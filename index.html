@@ -1,54 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test You Memory</title>
-    <style>
-        .boxContainer {
-            width: 400px;
-            height: 400px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 100px 100px 100px;
-            grid-gap: 20px;
-
-        }
-
-        .box {
-            height: 100px;
-            width: 100px;
-            background-color: salmon;
-            transform: all 0.1s ease-in;
-        }
-
-        .boxStart {
-            background-color: salmon;
-        }
-
-        .boxRandom {
-            background-color: seagreen;
-        }
-
-        .boxSelected {
-            background-color: yellow;
-        }
-    </style>
-</head>
-
-<body>
-    <main>
-
-        <div class="boxContainer">
-        </div>
-        <button id="play">Play</button>
-
-
-    </main>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="scripting/scripting.js"></script>
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="styles/styles.css">
+        <title>Test You Memory</title>
+    </head>
+    <body>
+        <main>
+            <div class="boxContainer"></div>
+            <button id="play">Play</button>
+        </main>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="scripting/scripting.js"></script>
+    </body>
 </html>

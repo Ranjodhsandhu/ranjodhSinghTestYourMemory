@@ -234,3 +234,35 @@ html {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.boxContainer {
+  width: 400px;
+  height: 400px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 100px 100px 100px;
+      grid-template-rows: 100px 100px 100px;
+  grid-gap: 20px;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: salmon;
+  -webkit-transform: all 0.1s ease-in;
+          transform: all 0.1s ease-in;
+}
+
+.boxStart {
+  background-color: salmon;
+}
+
+.boxRandom {
+  background-color: seagreen;
+}
+
+.boxSelected {
+  background-color: yellow;
+}
