@@ -1,13 +1,19 @@
 .boxContainer {
     width: 400px;
-    height: 400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 100px 100px;
-    grid-gap: 20px;
+    height: auto;
+
+    display:flex;
+    flex-wrap:wrap;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-rows: 100px 100px 100px;
+    // grid-gap: 20px;
 
 }
-
+.boxContainer > *{
+    min-width:100px;
+    flex:1;
+}
 .box {
     height: 100px;
     width: 100px;
