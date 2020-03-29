@@ -1,34 +1,53 @@
+:root{
+    --gridColumns:0;
+    // --boxWidth:100px;
+    // --boxHeight:100px;
+}
 .boxContainer {
-    width: 400px;
+    max-width:100px;
+    width: auto;
     height: auto;
-
-    display:flex;
-    flex-wrap:wrap;
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr;
-    // grid-template-rows: 100px 100px 100px;
-    // grid-gap: 20px;
-
+    display: grid;
+    grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
+    grid-template-rows: auto;
+    grid-gap: 20px;
 }
 .boxContainer > *{
     min-width:100px;
-    flex:1;
 }
 .box {
-    height: 100px;
-    width: 100px;
-    background-color: salmon;
-    transform: all 0.1s ease-in;
+    position:relative;
+    width: var(--boxWidth);
+    height: var(--boxHeight);
 }
-
-.boxStart {
-    background-color: salmon;
+.card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.3s linear;
+    box-shadow: -5px 5px 5px #aaa;
 }
-
+.box.active .card {
+    transform: rotateY(180deg);
+}
+.boxFront,
+.boxBack{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.boxFront{
+    background-color:salmon;
+}
+.boxBack {
+    transform: rotateY(180deg);
+    background-color:red;
+}
 .boxRandom {
     background-color: seagreen;
 }
-
-.boxSelected {
+.boxRandomBack{
+    transform: rotateY(180deg);
     background-color: yellow;
 }

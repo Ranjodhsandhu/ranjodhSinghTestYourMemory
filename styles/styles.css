@@ -235,34 +235,74 @@ html {
   overflow: hidden;
 }
 
+:root {
+  --gridColumns:0;
+}
+
 .boxContainer {
-  width: 400px;
-  height: 400px;
+  max-width: 100px;
+  width: auto;
+  height: auto;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 100px 100px 100px;
-      grid-template-rows: 100px 100px 100px;
+  -ms-grid-columns: 1fr (1fr)[var];
+      grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
   grid-gap: 20px;
 }
 
-.box {
-  height: 100px;
-  width: 100px;
-  background-color: salmon;
-  -webkit-transform: all 0.1s ease-in;
-          transform: all 0.1s ease-in;
+.boxContainer > * {
+  min-width: 100px;
 }
 
-.boxStart {
+.box {
+  position: relative;
+  width: var(--boxWidth);
+  height: var(--boxHeight);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  -webkit-box-shadow: -5px 5px 5px #aaa;
+          box-shadow: -5px 5px 5px #aaa;
+}
+
+.box.active .card {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.boxFront,
+.boxBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.boxFront {
   background-color: salmon;
+}
+
+.boxBack {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background-color: red;
 }
 
 .boxRandom {
   background-color: seagreen;
 }
 
-.boxSelected {
+.boxRandomBack {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   background-color: yellow;
 }
