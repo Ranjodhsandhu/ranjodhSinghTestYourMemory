@@ -1,11 +1,14 @@
 
 (function () {
     // variable declaration
-    const stage = 3;
+    const maxStage = 10;
+    const minStage = 3;
+
+    let stage = 3;
     let boxToSelect = stage;
-    const totalBoxes = stage * stage;
+    let totalBoxes = stage * stage;
     let randomBoxSelection = [];
-    let userClickArray = [];
+    let userSelectionArray = [];
     
     function setGridSizing(){
         document.documentElement.style.setProperty(`--gridColumns`, `${boxToSelect-1}`);
@@ -17,17 +20,20 @@
         }
         document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
         document.documentElement.style.setProperty(`--boxHeight`, `${boxHeight}px`);
-    };setGridSizing();
-
+    };
+    
     // your page initialization code here
     // the DOM will be available here
     
     // functions definitions
     const start = function () {
         reset();
+        boxToSelect = stage;
+        totalBoxes = stage * stage;
+        setGridSizing();
         updateCounter(boxToSelect);
         for (let x = 1; x <= totalBoxes; x++) {
-            $('.boxContainer').append(`<div class="box" id=\"box${x}\" data-num=${x}>
+            $('.boxContainer').append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
                 <div class="card">
                     <div class="boxFront"></div>
                     <div class="boxBack"></div>
@@ -69,27 +75,20 @@
             $(temporary).find('.boxFront').removeClass('boxRandom');
             $(temporary).find('.boxBack').removeClass('boxRandomBack');
         }
-        // $('.boxContainer').children().remove();
         randomBoxSelection = [];
-        userClickArray = [];
+        userSelectionArray = [];
     };
 
 
     
-    const boxClicked = function () {       
-        
-        console.log($(this).attr('data-num'));
-        
-        const digit = $(this).attr('data-num');
-        const selectionIndex = randomBoxSelection.indexOf(digit);
+    const boxClicked = function () {
+        const selection = parseInt($(this).attr('data-num'));
+        const selectionIndex = randomBoxSelection.indexOf(selection);
         $(this).addClass('active');
-
-        console.log("box clicked:"+digit);
-        
         if (selectionIndex !== -1) {
             if (!$(this).hasClass("boxSelected")) {
                 console.log("Right choice...Play again");
-                userClickArray.push(digit);
+                userSelectionArray.push(selection);
                 $(this).addClass("boxSelected");
             } else {
                 console.log("Already Selected");
@@ -97,16 +96,32 @@
         } else {
             alert("You lost...Play again");
             start();
+                // stageDiminish();
         }
-        
-        updateCounter(boxToSelect - userClickArray.length);
-        console.log("currentSelections : "+userClickArray.length);
-        if(userClickArray.length === boxToSelect){
+        updateCounter(boxToSelect - userSelectionArray.length);
+        if(userSelectionArray.length === boxToSelect){
             alert("You won");
+            start();
+            // stageProgress();
         }
-
     };
 
+    const stageProgress = function(){
+        if(stage <= maxStage)
+        stage++;
+        else
+        alert("You have a very sharp memory");
+
+        start();
+    }
+    const stageDiminish = function(){
+        if(stage > minStage)
+        stage--;
+        else
+        alert("Please try again");
+        
+        start();
+    }
     const updateCounter = function(val){
         $('.selectionsLeft span').text(val);
     }
