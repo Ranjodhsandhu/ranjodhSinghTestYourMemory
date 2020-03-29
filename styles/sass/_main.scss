@@ -36,6 +36,7 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    transition:all 0.3s linear;
 }
 .boxFront{
     background-color:salmon;
@@ -46,6 +47,7 @@
 }
 .boxRandom {
     background-color: seagreen;
+    transition:all 0.3s linear;
 }
 .boxRandomBack{
     transform: rotateY(180deg);

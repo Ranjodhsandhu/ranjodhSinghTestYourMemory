@@ -285,6 +285,8 @@ html {
   height: 100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .boxFront {
@@ -299,6 +301,8 @@ html {
 
 .boxRandom {
   background-color: seagreen;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .boxRandomBack {
