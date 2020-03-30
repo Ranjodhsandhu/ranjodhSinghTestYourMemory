@@ -1,7 +1,7 @@
 :root{
     --gridColumns:0;
-    // --boxWidth:100px;
-    // --boxHeight:100px;
+    --boxWidth:100px;
+    --boxHeight:100px;
 }
 .boxContainer {
     max-width:100px;
@@ -44,6 +44,7 @@
 .boxBack {
     transform: rotateY(180deg);
     background-color:red;
+    
 }
 .boxRandom {
     background-color: seagreen;
@@ -52,4 +53,8 @@
 .boxRandomBack{
     transform: rotateY(180deg);
     background-color: yellow;
+    // background-image:url("../assets/canada_flag.png");
+    // background-size: contain;
+    // background-position: center;
+    // background-repeat: no-repeat;
 }

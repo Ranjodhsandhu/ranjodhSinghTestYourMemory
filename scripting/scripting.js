@@ -1,7 +1,7 @@
 
 (function () {
     // variable declaration
-    const maxStage = 10;
+    const maxStage = 6;
     const minStage = 3;
 
     let stage = 3;
@@ -14,7 +14,7 @@
         document.documentElement.style.setProperty(`--gridColumns`, `${boxToSelect-1}`);
         let boxWidth = 100;
         let boxHeight = 100;
-        if(boxToSelect>5){
+        if(boxToSelect>10){
             boxWidth = 50;
             boxHeight = 50;
         }
@@ -33,12 +33,18 @@
         setGridSizing();
         updateCounter(boxToSelect);
         for (let x = 1; x <= totalBoxes; x++) {
-            $('.boxContainer').append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
-                <div class="card">
-                    <div class="boxFront"></div>
-                    <div class="boxBack"></div>
-                </div>
-            </div>`);
+            $('.boxContainer').empty();
+        }
+        for (let x = 1; x <= totalBoxes; x++) {
+            
+            $('.boxContainer')
+            .append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
+                        <div class="card">
+                            <div class="boxFront"></div>
+                            <div class="boxBack"></div>
+                        </div>
+                    </div>`
+                );
         }
         makeRandomSelections();
         showRandomSelections();
@@ -63,7 +69,7 @@
             $(temporary).find('.boxBack').addClass('boxRandomBack');
             setTimeout(function(){
                 $(temporary).find('.boxFront').removeClass('boxRandom');
-            },(3000 + (j*100)));
+            },(2000 + (j*100)));
         }
     }
 
@@ -81,44 +87,47 @@
 
 
     
-    const boxClicked = function () {
-        const selection = parseInt($(this).attr('data-num'));
+    const boxClicked = function (e) {
+        const selection = parseInt($(e.target).closest('.box').attr('data-num'));
         const selectionIndex = randomBoxSelection.indexOf(selection);
-        $(this).addClass('active');
+        
+        console.log($(e.target).closest('.box'));
+
+        $(e.target).closest('.box').addClass('active');
         if (selectionIndex !== -1) {
             if (!$(this).hasClass("boxSelected")) {
                 console.log("Right choice...Play again");
                 userSelectionArray.push(selection);
                 $(this).addClass("boxSelected");
             } else {
-                console.log("Already Selected");
+                alert("Already selected");
             }
         } else {
-            alert("You lost...Play again");
-            start();
-                // stageDiminish();
+            stageDiminish();
         }
         updateCounter(boxToSelect - userSelectionArray.length);
         if(userSelectionArray.length === boxToSelect){
-            alert("You won");
-            start();
-            // stageProgress();
+            stageProgress();
         }
     };
-
+    
     const stageProgress = function(){
-        if(stage <= maxStage)
-        stage++;
+        if(stage < maxStage){
+            alert("You won");
+            stage++;
+        }
         else
         alert("You have a very sharp memory");
 
         start();
     }
     const stageDiminish = function(){
-        if(stage > minStage)
-        stage--;
+        if(stage > minStage){
+            alert("Wrong answer...Please try again");
+            stage--;
+        }
         else
-        alert("Please try again");
+            alert("Please try again");
         
         start();
     }
@@ -133,5 +142,5 @@
 
     // define events here
     start();
-    $('.box').on('click', boxClicked);
+    $('.boxContainer').on('click',".boxFront",boxClicked);
 })();

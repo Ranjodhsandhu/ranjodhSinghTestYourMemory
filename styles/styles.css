@@ -237,6 +237,8 @@ html {
 
 :root {
   --gridColumns:0;
+  --boxWidth:100px;
+  --boxHeight:100px;
 }
 
 .boxContainer {
