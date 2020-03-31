@@ -10,15 +10,17 @@
     let totalBoxes = stage * stage;
     let randomBoxSelection = [];
     let userSelectionArray = [];
+    let containerWidth = 300;
     
     const boxes = ()=> {
-        if(stage === 3) boxToSelect = stage;
-        if(stage === 4) boxToSelect = stage+1;
-        if(stage === 5) boxToSelect = stage+3;
-        if(stage === 6) boxToSelect = stage+5;
+        if (stage === 3) { boxToSelect = stage; containerWidth = 420;}
+        if (stage === 4) { boxToSelect = stage + 1; containerWidth = 540;}
+        if (stage === 5) { boxToSelect = stage + 3; containerWidth = 660;}
+        if (stage === 6) { boxToSelect = stage + 5; containerWidth = 780;}
     };
     function setGridSizing(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
+        document.documentElement.style.setProperty(`--containerWidth`, `${containerWidth}px`);
         let boxWidth = 100;
         let boxHeight = 100;
         document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
@@ -35,11 +37,8 @@
         totalBoxes = stage * stage;
         setGridSizing();
         updateCounter(boxToSelect,stage-2);
+        $('.boxContainer').empty();
         for (let x = 1; x <= totalBoxes; x++) {
-            $('.boxContainer').empty();
-        }
-        for (let x = 1; x <= totalBoxes; x++) {
-            
             $('.boxContainer')
             .append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
                         <div class="card">
