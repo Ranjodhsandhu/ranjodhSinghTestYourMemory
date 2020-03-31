@@ -12,6 +12,10 @@ main{
     width:90%;
     height:auto;
     margin: 0 auto;
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    margin-top:20px;
 }
 .boxContainer {
     max-width:var(--containerWidth);
@@ -23,7 +27,7 @@ main{
     grid-template-rows: auto;
     grid-gap: 20px;
     border:20px solid rgba(brown,0.5);
-    margin:0 auto;
+    // margin:0 auto;
 }
 .boxContainer > *{
     min-width:100px;
@@ -70,4 +74,9 @@ main{
     // background-size: contain;
     // background-position: center;
     // background-repeat: no-repeat;
+}
+.reset{
+    width:100px;
+    height:fit-content;
+    padding:10px;
 }

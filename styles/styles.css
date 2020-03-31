@@ -251,6 +251,15 @@ main {
   width: 90%;
   height: auto;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
 }
 
 .boxContainer {
@@ -266,7 +275,6 @@ main {
       grid-template-rows: auto;
   grid-gap: 20px;
   border: 20px solid rgba(165, 42, 42, 0.5);
-  margin: 0 auto;
 }
 
 .boxContainer > * {
@@ -326,4 +334,12 @@ main {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   background-color: yellow;
+}
+
+.reset {
+  width: 100px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 10px;
 }
