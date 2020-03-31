@@ -6,18 +6,21 @@
 
     let stage = 3;
     let boxToSelect = stage;
+    
     let totalBoxes = stage * stage;
     let randomBoxSelection = [];
     let userSelectionArray = [];
     
+    const boxes = ()=> {
+        if(stage === 3) boxToSelect = stage;
+        if(stage === 4) boxToSelect = stage+1;
+        if(stage === 5) boxToSelect = stage+3;
+        if(stage === 6) boxToSelect = stage+5;
+    };
     function setGridSizing(){
-        document.documentElement.style.setProperty(`--gridColumns`, `${boxToSelect-1}`);
+        document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
         let boxWidth = 100;
         let boxHeight = 100;
-        if(boxToSelect>10){
-            boxWidth = 50;
-            boxHeight = 50;
-        }
         document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
         document.documentElement.style.setProperty(`--boxHeight`, `${boxHeight}px`);
     };
@@ -28,10 +31,10 @@
     // functions definitions
     const start = function () {
         reset();
-        boxToSelect = stage;
+        boxes();
         totalBoxes = stage * stage;
         setGridSizing();
-        updateCounter(boxToSelect);
+        updateCounter(boxToSelect,stage-2);
         for (let x = 1; x <= totalBoxes; x++) {
             $('.boxContainer').empty();
         }
@@ -105,7 +108,7 @@
         } else {
             stageDiminish();
         }
-        updateCounter(boxToSelect - userSelectionArray.length);
+        updateCounter((boxToSelect - userSelectionArray.length),stage-2);
         if(userSelectionArray.length === boxToSelect){
             stageProgress();
         }
@@ -131,8 +134,10 @@
         
         start();
     }
-    const updateCounter = function(val){
-        $('.selectionsLeft span').text(val);
+    const updateCounter = function(boxes,stage){
+        $('.selectionsLeft span').text(boxes);
+        $('.stage span').text(stage);
+
     }
 
     $('#play').on('click', function (e) {
