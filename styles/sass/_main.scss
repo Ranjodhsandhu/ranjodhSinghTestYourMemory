@@ -1,8 +1,8 @@
 :root{
     --gridColumns:0;
-    --boxWidth:100px;
-    --boxHeight:100px;
-    --containerWidth:420px;
+    --boxWidth:6rem;
+    --boxHeight:6rem;
+    --containerWidth:100rem;
 }
 .wrapper{
     max-width:80%;
@@ -15,36 +15,37 @@ main{
     display:flex;
     justify-content: space-around;
     align-items:center;
-    margin-top:20px;
+    margin-top:2rem;
 }
+
 .boxContainer {
     max-width:var(--containerWidth);
     width: auto;
     height: auto;
-    padding:20px;
+    padding:2rem;
     display: grid;
     grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
-    grid-template-rows: auto;
-    grid-gap: 20px;
-    border:20px solid rgba(brown,0.5);
-    // margin:0 auto;
+    grid-template-rows: 1fr;    
+    grid-gap: 0.7rem;
+    border:2rem solid rgba(brown,0.5);
+    background-color:lightgray;
 }
 .boxContainer > *{
-    min-width:100px;
+    min-width:6rem;
 }
 .box {
     position:relative;
     width: var(--boxWidth);
     height: var(--boxHeight);
 }
-.card {
+.innerContainer {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
     transition: all 0.3s linear;
     box-shadow: -5px 5px 5px #aaa;
 }
-.box.active .card {
+.box.active .innerContainer {
     transform: rotateY(180deg);
 }
 .boxFront,
@@ -56,7 +57,7 @@ main{
     transition:all 0.3s linear;
 }
 .boxFront{
-    background-color:salmon;
+    background-color:darkcyan;
 }
 .boxBack {
     transform: rotateY(180deg);
@@ -64,19 +65,36 @@ main{
     
 }
 .boxRandom {
-    background-color: seagreen;
-    transition:all 0.3s linear;
+    background-color: yellow;
+    transition:all 1s linear;
+    animation:fadeTheBox 1s linear;
 }
 .boxRandomBack{
     transform: rotateY(180deg);
-    background-color: yellow;
-    // background-image:url("../assets/canada_flag.png");
-    // background-size: contain;
-    // background-position: center;
-    // background-repeat: no-repeat;
+    background-color: darkgreen;
 }
 .reset{
     width:100px;
     height:fit-content;
     padding:10px;
+}
+
+@keyframes fadeTheBox {
+    0%{ 
+        opacity: 0.9;
+        transform:scale(1);
+    }
+    10%{transform:scale(1.01);}
+    20%{transform:scale(1.03);}
+    30%{transform:scale(1.05);}
+    40%{transform:scale(1.07);}
+    50%{transform:scale(1.1);}
+    60%{transform:scale(1.07);}
+    70%{transform:scale(1.05);}
+    80%{transform:scale(1.03);}
+    90%{transform:scale(1.01);}
+    100%{
+        opacity: 1;
+        transform:scale(1);
+    }
 }

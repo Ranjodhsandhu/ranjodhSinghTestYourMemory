@@ -235,11 +235,15 @@ html {
   overflow: hidden;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 :root {
   --gridColumns:0;
-  --boxWidth:100px;
-  --boxHeight:100px;
-  --containerWidth:420px;
+  --boxWidth:6rem;
+  --boxHeight:6rem;
+  --containerWidth:100rem;
 }
 
 .wrapper {
@@ -259,26 +263,27 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .boxContainer {
   max-width: var(--containerWidth);
   width: auto;
   height: auto;
-  padding: 20px;
+  padding: 2rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr (1fr)[var];
       grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
-  grid-gap: 20px;
-  border: 20px solid rgba(165, 42, 42, 0.5);
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-gap: 0.7rem;
+  border: 2rem solid rgba(165, 42, 42, 0.5);
+  background-color: lightgray;
 }
 
 .boxContainer > * {
-  min-width: 100px;
+  min-width: 6rem;
 }
 
 .box {
@@ -287,7 +292,7 @@ main {
   height: var(--boxHeight);
 }
 
-.card {
+.innerContainer {
   width: 100%;
   height: 100%;
   -webkit-transform-style: preserve-3d;
@@ -298,7 +303,7 @@ main {
           box-shadow: -5px 5px 5px #aaa;
 }
 
-.box.active .card {
+.box.active .innerContainer {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
@@ -315,7 +320,7 @@ main {
 }
 
 .boxFront {
-  background-color: salmon;
+  background-color: darkcyan;
 }
 
 .boxBack {
@@ -325,15 +330,17 @@ main {
 }
 
 .boxRandom {
-  background-color: seagreen;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
+  background-color: yellow;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+  -webkit-animation: fadeTheBox 1s linear;
+          animation: fadeTheBox 1s linear;
 }
 
 .boxRandomBack {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  background-color: yellow;
+  background-color: darkgreen;
 }
 
 .reset {
@@ -342,4 +349,102 @@ main {
   height: -moz-fit-content;
   height: fit-content;
   padding: 10px;
+}
+
+@-webkit-keyframes fadeTheBox {
+  0% {
+    opacity: 0.9;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  20% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  30% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  40% {
+    -webkit-transform: scale(1.07);
+            transform: scale(1.07);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  60% {
+    -webkit-transform: scale(1.07);
+            transform: scale(1.07);
+  }
+  70% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  80% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  90% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes fadeTheBox {
+  0% {
+    opacity: 0.9;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  20% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  30% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  40% {
+    -webkit-transform: scale(1.07);
+            transform: scale(1.07);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  60% {
+    -webkit-transform: scale(1.07);
+            transform: scale(1.07);
+  }
+  70% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  80% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  90% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }

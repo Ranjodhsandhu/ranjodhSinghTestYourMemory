@@ -2,8 +2,8 @@
 // load script when page is ready
 (function () {
     // variable declaration
-    const maxStage = 6;
-    const minStage = 3;
+    const maxStage = 10;
+    const minStage = 2;
 
     let stage = 3;
     let boxToSelect = stage;
@@ -11,25 +11,31 @@
     let totalBoxes = stage * stage;
     let randomBoxSelection = [];
     let userSelectionArray = [];
-    let containerWidth = 300;
+    let containerWidth = 10000;
+    const alertTimer = 1000;
     
     // functions definitions
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
-        if (stage === 3) { boxToSelect = stage; containerWidth = 420;}
-        if (stage === 4) { boxToSelect = stage + 1; containerWidth = 540;}
-        if (stage === 5) { boxToSelect = stage + 3; containerWidth = 660;}
-        if (stage === 6) { boxToSelect = stage + 5; containerWidth = 780;}
+        boxToSelect = stage;
+//         if (stage === 3) { boxToSelect = stage; }//containerWidth = 420;}
+//         if (stage === 4) { boxToSelect = stage + 1; }//containerWidth = 540;}
+//         if (stage === 5) { boxToSelect = stage + 3; }//containerWidth = 660;}
+//         if (stage === 6) { boxToSelect = stage + 5; }//containerWidth = 780;}
     };
 
     // set the grid structure dynamically as per the number of boxes
     function setGridSizing(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
-        document.documentElement.style.setProperty(`--containerWidth`, `${containerWidth}px`);
+        //document.documentElement.style.setProperty(`--containerWidth`, `${containerWidth}px`);
         let boxWidth = 100;
         let boxHeight = 100;
-        document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
-        document.documentElement.style.setProperty(`--boxHeight`, `${boxHeight}px`);
+        if(stage > 2){
+            // boxWidth = 50;
+            // boxHeight = 50;
+        }
+        // document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
+        // document.documentElement.style.setProperty(`--boxHeight`, `${boxHeight}px`);
     };
 
     // start the game for any given stage
@@ -44,7 +50,7 @@
         for (let x = 1; x <= totalBoxes; x++) {
             $('.boxContainer')
             .append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
-                        <div class="card">
+                        <div class="innerContainer">
                             <div class="boxFront"></div>
                             <div class="boxBack"></div>
                         </div>
@@ -73,7 +79,7 @@
             $(temporary).find('.boxBack').addClass('boxRandomBack');
             setTimeout(function(){
                 $(temporary).find('.boxFront').removeClass('boxRandom');
-            },(2000 + (j*100)));
+            },(2000 + (j*10)));
         }
     }
 
@@ -90,46 +96,72 @@
         e.preventDefault();
         const selection = parseInt($(this).closest('.box').attr('data-num'));
         const selectionIndex = randomBoxSelection.indexOf(selection);
-        
         $(this).closest('.box').addClass('active');
-        console.log($(this).closest('.box'));
-
         if (selectionIndex !== -1) {
             if (!$(this).hasClass("boxSelected")) {
                 userSelectionArray.push(selection);
                 $(this).addClass("boxSelected");
             }
         } else {
-            stageDiminish();
+            setTimeout(stageDiminish,0);
         }
         updateCounter((boxToSelect - userSelectionArray.length),stage-2);
         if(userSelectionArray.length === boxToSelect){
-            stageProgress();
-            // start();
+            // put the stage progress function call to the end of the stack to make it work as expected in this case
+            setTimeout(stageProgress,0);
         }
     };
     
     // if user wins, user will go one stage up
     const stageProgress = function(){
         if(stage < maxStage){
-            alert("You won");
             stage++;
+            alertUser('success','Success!!!');
         }
         else
-        alert("You have a very sharp memory");
-
-        start();
+            alertUser('success','You have SHARP Memory!!!');
+            
+        setTimeout(start,(alertTimer+200));
     }
-
     // if user loses, user will go one stage down
     const stageDiminish = function(){
         if(stage > minStage){
-            alert("Wrong answer...Please try again");
+            alertUser('error','Try Again!!!');
             stage--;
         }
         else
-            alert("Please try again");
-        start();
+            alertUser('error','Try Again!!!');
+
+        setTimeout(start,alertTimer);
+    }
+    const alertUser = function(result,resultQuote){
+        let timerInterval;
+        Swal.fire({
+            icon:result,
+            title:resultQuote,
+            timer: alertTimer,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('closed success alert')
+            }
+        });
     }
 
     // update the game info counter
