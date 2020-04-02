@@ -245,7 +245,6 @@ html {
   --boxWidth:6rem;
   --boxHeight:6rem;
   --containerWidth:100rem;
-  --containerPadding:2rem;
   --containerBorderWidth:2rem;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
@@ -269,13 +268,14 @@ main {
       -ms-flex-align: center;
           align-items: center;
   margin-top: 2rem;
+  background-color: brown;
 }
 
 .boxContainer {
+  margin: 5rem;
   max-width: var(--containerWidth);
   width: auto;
   height: auto;
-  padding: var(--containerPadding);
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr (1fr)[var];
@@ -283,8 +283,8 @@ main {
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
   grid-gap: var(--gridGap);
-  border: var(--containerBorderWidth) solid rgba(165, 42, 42, 0.5);
-  background-color: lightgray;
+  border: var(--containerBorderWidth) solid lightcyan;
+  background-color: lightcyan;
 }
 
 .boxContainer > * {
@@ -456,30 +456,31 @@ main {
 
 @media (max-width: 800px) {
   :root {
-    --boxWidth:4rem;
-    --boxHeight:4rem;
-    --containerPadding:1rem;
-    --containerBorderWidth:1.5rem;
-    --gridGap:0.7rem;
+    --boxWidth:5rem;
+    --boxHeight:5rem;
   }
 }
 
 @media (max-width: 580px) {
   :root {
-    --boxWidth:3rem;
-    --boxHeight:3rem;
-    --containerPadding:0.8rem;
-    --containerBorderWidth:1rem;
+    --boxWidth:4rem;
+    --boxHeight:4rem;
+    --containerBorderWidth:1.7rem;
     --gridGap:0.6rem;
+  }
+  main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   :root {
-    --boxWidth:2rem;
-    --boxHeight:2rem;
-    --containerPadding:0.5rem;
-    --containerBorderWidth:1rem;
+    --boxWidth:3rem;
+    --boxHeight:3rem;
+    --containerBorderWidth:1.5rem;
     --gridGap:0.5rem;
   }
 }

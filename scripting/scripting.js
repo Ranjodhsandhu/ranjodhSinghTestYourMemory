@@ -2,47 +2,38 @@
 // load script when page is ready
 (function () {
     // variable declaration
-    const maxStage = 10;
+    const maxStage = 7;
     const minStage = 2;
 
-    let stage = 2;
+    let stage = 7;
     let boxToSelect = stage;
     
     let totalBoxes = stage * stage;
     let randomBoxSelection = [];
     let userSelectionArray = [];
-    let containerWidth = 10000;
     const alertTimer = 1000;
     
     // functions definitions
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
         boxToSelect = stage;
-//         if (stage === 3) { boxToSelect = stage; }//containerWidth = 420;}
-//         if (stage === 4) { boxToSelect = stage + 1; }//containerWidth = 540;}
-//         if (stage === 5) { boxToSelect = stage + 3; }//containerWidth = 660;}
-//         if (stage === 6) { boxToSelect = stage + 5; }//containerWidth = 780;}
+        if (stage === 3) { boxToSelect = stage; }
+        if (stage === 4) { boxToSelect = stage + 1; }
+        if (stage === 5) { boxToSelect = stage + 3; }
+        if (stage === 6) { boxToSelect = stage + 5; }
+        if (stage === 7) { boxToSelect = stage + 7; }
     };
 
     // set the grid structure dynamically as per the number of boxes
-    function setGridSizing(){
+    function setGridColumns(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
-        //document.documentElement.style.setProperty(`--containerWidth`, `${containerWidth}px`);
-        let boxWidth = 100;
-        let boxHeight = 100;
-        if(stage > 2){
-            // boxWidth = 50;
-            // boxHeight = 50;
-        }
-        // document.documentElement.style.setProperty(`--boxWidth`, `${boxWidth}px`);
-        // document.documentElement.style.setProperty(`--boxHeight`, `${boxHeight}px`);
     };
 
     // start the game for any given stage
     const start = function () {
         reset();
         boxes();
-        setGridSizing();
+        setGridColumns();
         updateCounter(boxToSelect,stage-2);
         // re-calculate total boxes as per the stage
         totalBoxes = stage * stage;

@@ -4,7 +4,6 @@
     --boxWidth:6rem;
     --boxHeight:6rem;
     --containerWidth:100rem;
-    --containerPadding:2rem;
     --containerBorderWidth:2rem;
     transition:all 0.3s linear;
 }
@@ -20,19 +19,20 @@ main{
     justify-content: space-around;
     align-items:center;
     margin-top:2rem;
+    background-color:brown;
 }
 
 .boxContainer {
+    margin:5rem;
     max-width:var(--containerWidth);
     width: auto;
     height: auto;
-    padding:var(--containerPadding);
     display: grid;
     grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
     grid-template-rows: 1fr;    
     grid-gap: var(--gridGap);
-    border:var(--containerBorderWidth) solid rgba(brown,0.5);
-    background-color:lightgray;
+    border:var(--containerBorderWidth) solid lightcyan;
+    background-color:lightcyan;
 }
 .boxContainer > *{
     min-width:2rem;
@@ -104,28 +104,26 @@ main{
 }
 @media(max-width:800px){
     :root{
-        --boxWidth:4rem;
-        --boxHeight:4rem;
-        --containerPadding:1rem;
-        --containerBorderWidth:1.5rem;
-        --gridGap:0.7rem;
+        --boxWidth:5rem;
+        --boxHeight:5rem;
     }
 }
 @media(max-width:580px){
     :root{
-        --boxWidth:3rem;
-        --boxHeight:3rem;
-        --containerPadding:0.8rem;
-        --containerBorderWidth:1rem;
+        --boxWidth:4rem;
+        --boxHeight:4rem;
+        --containerBorderWidth:1.7rem;
         --gridGap:0.6rem;
     }
+    main{
+        flex-direction: column;;
+    }
 }
-@media(max-width:320px){
+@media(max-width:400px){
     :root{
-        --boxWidth:2rem;
-        --boxHeight:2rem;
-        --containerPadding:0.5rem;
-        --containerBorderWidth:1rem;
+        --boxWidth:3rem;
+        --boxHeight:3rem;
+        --containerBorderWidth:1.5rem;
         --gridGap:0.5rem;
     }
 }
