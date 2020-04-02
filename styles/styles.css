@@ -248,7 +248,7 @@ html {
   --gridColumns:0;
   --boxWidth:6rem;
   --boxHeight:6rem;
-  --boxBorder:0.3rem;
+  --boxBorder:0.2rem;
   --containerWidth:100rem;
   --containerBorderWidth:2rem;
   -webkit-transition: all 0.3s linear;
@@ -262,6 +262,10 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
@@ -304,8 +308,8 @@ html {
           transform-style: preserve-3d;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  -webkit-box-shadow: -5px 5px 5px #aaa;
-          box-shadow: -5px 5px 5px #aaa;
+  -webkit-box-shadow: -3px 3px 2px #aaa;
+          box-shadow: -3px 3px 2px #aaa;
 }
 
 .box.active .innerContainer {
@@ -470,12 +474,12 @@ p {
 
 @media (max-width: 580px) {
   :root {
-    --containerBorderWidth:1.7rem;
+    --containerBorderWidth:1.5rem;
   }
 }
 
 @media (max-width: 400px) {
   :root {
-    --containerBorderWidth:1.5rem;
+    --containerBorderWidth:1rem;
   }
 }

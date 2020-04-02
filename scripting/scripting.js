@@ -4,7 +4,7 @@
     const maxStage = 7;
     const minStage = 2;
     // starting stage
-    let stage = 7;
+    let stage = 4;
     // how many boxes to select
     let boxToSelect;
     // total boxes on the board
@@ -40,14 +40,14 @@
     };
     
     const getBoxWidthHeight = () => {
-        let [width,height] = [6,6];
+        let [width,height] = [8,8];
         if (vWidth < 800 && stage >= 7) { width = 5; height = 5;}
         if (vWidth < 580 && stage >= 6) { width = 4.5; height = 4.5;}
         if (vWidth < 400 && stage >= 5) { width = 4; height = 4;}
-        if (vWidth < 350 && stage >= 7) { width = 3.7; height = 3.7;}
+        if (vWidth < 350 && stage >= 7) { width = 3.8; height = 3.8;}
         return [width,height];
     }
-    
+
     // start the game for any given stage
     const start = function () {
         reset();
