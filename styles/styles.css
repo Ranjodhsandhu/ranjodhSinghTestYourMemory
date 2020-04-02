@@ -246,9 +246,9 @@ html {
 
 :root {
   --gridColumns:0;
-  --gridGap:0.7rem;
   --boxWidth:6rem;
   --boxHeight:6rem;
+  --boxBorder:0.3rem;
   --containerWidth:100rem;
   --containerBorderWidth:2rem;
   -webkit-transition: all 0.3s linear;
@@ -294,7 +294,7 @@ html {
   position: relative;
   width: var(--boxWidth);
   height: var(--boxHeight);
-  border: 0.3rem solid transparent;
+  border: var(--boxBorder) solid transparent;
 }
 
 .innerContainer {
@@ -354,6 +354,11 @@ html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 10px;
+}
+
+p {
+  color: white;
+  font-size: 2rem;
 }
 
 @-webkit-keyframes fadeTheBox {
@@ -454,19 +459,9 @@ html {
   }
 }
 
-@media (max-width: 800px) {
-  :root {
-    --boxWidth:5rem;
-    --boxHeight:5rem;
-  }
-}
-
 @media (max-width: 580px) {
   :root {
-    --boxWidth:4rem;
-    --boxHeight:4rem;
     --containerBorderWidth:1.7rem;
-    --gridGap:0.6rem;
   }
   .gameBoard {
     -webkit-box-orient: vertical;
@@ -478,9 +473,6 @@ html {
 
 @media (max-width: 400px) {
   :root {
-    --boxWidth:3rem;
-    --boxHeight:3rem;
     --containerBorderWidth:1.5rem;
-    --gridGap:0.5rem;
   }
 }
