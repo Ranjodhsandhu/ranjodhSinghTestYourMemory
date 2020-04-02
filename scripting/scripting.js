@@ -139,30 +139,11 @@
     const alertUser = function(result,resultQuote){
         let timerInterval;
         Swal.fire({
-            icon:result,
-            title:resultQuote,
+            position: 'top',
+            icon: result,
+            title: resultQuote,
             timer: alertTimer,
-            timerProgressBar: true,
-            onBeforeOpen: () => {
-
-                timerInterval = setInterval(() => {
-                    const content = Swal.getContent()
-                    if (content) {
-                        const b = content.querySelector('b')
-                        if (b) {
-                            b.textContent = Swal.getTimerLeft()
-                        }
-                    }
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval);
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('closed success alert')
-            }
+            showConfirmButton: false
         });
     }
 

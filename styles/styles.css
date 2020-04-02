@@ -239,6 +239,11 @@ html {
   font-size: 62.5%;
 }
 
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
 :root {
   --gridColumns:0;
   --gridGap:0.7rem;
@@ -250,12 +255,7 @@ html {
   transition: all 0.3s linear;
 }
 
-.wrapper {
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-main {
+.gameBoard {
   width: 90%;
   height: auto;
   margin: 0 auto;
@@ -282,7 +282,6 @@ main {
       grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  grid-gap: var(--gridGap);
   border: var(--containerBorderWidth) solid lightcyan;
   background-color: lightcyan;
 }
@@ -295,6 +294,7 @@ main {
   position: relative;
   width: var(--boxWidth);
   height: var(--boxHeight);
+  border: 0.3rem solid transparent;
 }
 
 .innerContainer {
@@ -468,7 +468,7 @@ main {
     --containerBorderWidth:1.7rem;
     --gridGap:0.6rem;
   }
-  main {
+  .gameBoard {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
