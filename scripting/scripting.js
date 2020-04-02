@@ -30,14 +30,14 @@
     // set the grid structure dynamically as per the number of boxes
     function setGridColumns(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
-        let w = 6;
-        let h = 6;
+        let width = 6;
+        let height = 6;
         if(stage >= 5){
-            w = 5;
-            h = 5;
+            width = 5;
+            height = 5;
         }
-        document.documentElement.style.setProperty(`--boxWidth`, `${w}rem`);
-        document.documentElement.style.setProperty(`--boxHeight`, `${h}rem`);
+        document.documentElement.style.setProperty(`--boxWidth`, `${width}rem`);
+        document.documentElement.style.setProperty(`--boxHeight`, `${height}rem`);
     };
 
     // start the game for any given stage
