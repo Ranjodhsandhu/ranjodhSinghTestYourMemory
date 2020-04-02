@@ -1,16 +1,19 @@
-
 // load script when page is ready
 (function () {
     // variable declaration
     const maxStage = 7;
     const minStage = 2;
-
-    let stage = 7;
-    let boxToSelect = stage;
-    
+    // starting stage
+    let stage = 2;
+    // how many boxes to select
+    let boxToSelect;
+    // total boxes on the board
     let totalBoxes = stage * stage;
+    // array to store random selections
     let randomBoxSelection = [];
+    // array to store user selections
     let userSelectionArray = [];
+    // time for the success alert to stay up
     const alertTimer = 1000;
     
     // functions definitions
@@ -27,6 +30,14 @@
     // set the grid structure dynamically as per the number of boxes
     function setGridColumns(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
+        let w = 6;
+        let h = 6;
+        if(stage >= 5){
+            w = 5;
+            h = 5;
+        }
+        document.documentElement.style.setProperty(`--boxWidth`, `${w}rem`);
+        document.documentElement.style.setProperty(`--boxHeight`, `${h}rem`);
     };
 
     // start the game for any given stage
