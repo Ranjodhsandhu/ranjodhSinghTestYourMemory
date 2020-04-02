@@ -102,13 +102,15 @@ p{
         transform:scale(1);
     }
 }
+@media(max-width:800px){
+    .gameBoard{
+        flex-direction: column;;
+    }
+}
 
 @media(max-width:580px){
     :root{
         --containerBorderWidth:1.7rem;
-    }
-    .gameBoard{
-        flex-direction: column;;
     }
 }
 @media(max-width:400px){

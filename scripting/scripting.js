@@ -4,7 +4,7 @@
     const maxStage = 7;
     const minStage = 2;
     // starting stage
-    let stage = 2;
+    let stage = 7;
     // how many boxes to select
     let boxToSelect;
     // total boxes on the board
@@ -13,41 +13,41 @@
     let randomBoxSelection = [];
     // array to store user selections
     let userSelectionArray = [];
+    let hard = false;
     // time for the success alert to stay up
     const alertTimer = 1000;
     // view port width
     let vWidth = $(window).width();
-
     // functions definitions
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
         boxToSelect = stage;
-        // if (stage === 3) { boxToSelect = stage; }
-        // if (stage === 4) { boxToSelect = stage + 1; }
-        // if (stage === 5) { boxToSelect = stage + 3; }
-        // if (stage === 6) { boxToSelect = stage + 5; }
-        // if (stage === 7) { boxToSelect = stage + 7; }
+        if(hard){
+            if (stage === 3) { boxToSelect = stage; }
+            if (stage === 4) { boxToSelect = stage + 1; }
+            if (stage === 5) { boxToSelect = stage + 3; }
+            if (stage === 6) { boxToSelect = stage + 5; }
+            if (stage === 7) { boxToSelect = stage + 7; }
+        }
     };
 
     // set the grid structure dynamically as per the number of boxes
     function setGridColumns(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
         let [width,height] = getBoxWidthHeight();
-        console.log(width+":"+height+"::stage:"+stage+"::width:"+vWidth);
         document.documentElement.style.setProperty(`--boxWidth`, `${width}rem`);
         document.documentElement.style.setProperty(`--boxHeight`, `${height}rem`);
     };
     
     const getBoxWidthHeight = () => {
         let [width,height] = [6,6];
-        if (vWidth < 800 && stage >= 6) { console.log("6th");width = 5;height = 5;}
-        if (vWidth < 580 && stage >= 7) { console.log("5th");width = 4.5;height = 4.5;}
-        if (vWidth < 400 && stage >= 6) { console.log("4th");width = 4;height = 4;}
-        if (vWidth < 350 && stage >= 7) { console.log("3rd");width = 3.7;height = 3.7;}
-        if (vWidth < 350 && stage >= 6) { console.log("2nd");width = 4;height = 4;}
-        if (vWidth < 350 && stage >= 4){ console.log("1st");width = 3.7;height = 3.7;}
+        if (vWidth < 800 && stage >= 7) { width = 5; height = 5;}
+        if (vWidth < 580 && stage >= 6) { width = 4.5; height = 4.5;}
+        if (vWidth < 400 && stage >= 5) { width = 4; height = 4;}
+        if (vWidth < 350 && stage >= 7) { width = 3.7; height = 3.7;}
         return [width,height];
     }
+    
     // start the game for any given stage
     const start = function () {
         reset();

@@ -459,15 +459,18 @@ p {
   }
 }
 
-@media (max-width: 580px) {
-  :root {
-    --containerBorderWidth:1.7rem;
-  }
+@media (max-width: 800px) {
   .gameBoard {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+}
+
+@media (max-width: 580px) {
+  :root {
+    --containerBorderWidth:1.7rem;
   }
 }
 
