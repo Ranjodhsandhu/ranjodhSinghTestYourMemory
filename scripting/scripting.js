@@ -15,7 +15,7 @@
     let userSelectionArray = [];
     let hard = false;
     // time for the success alert to stay up
-    const alertTimer = 1000;
+    const alertTimer = 2000;
     // view port width
     let vWidth = $(window).width();
     // functions definitions
