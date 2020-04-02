@@ -1,8 +1,12 @@
 :root{
     --gridColumns:0;
+    --gridGap:0.7rem;
     --boxWidth:6rem;
     --boxHeight:6rem;
     --containerWidth:100rem;
+    --containerPadding:2rem;
+    --containerBorderWidth:2rem;
+    transition:all 0.3s linear;
 }
 .wrapper{
     max-width:80%;
@@ -22,16 +26,16 @@ main{
     max-width:var(--containerWidth);
     width: auto;
     height: auto;
-    padding:2rem;
+    padding:var(--containerPadding);
     display: grid;
     grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
     grid-template-rows: 1fr;    
-    grid-gap: 0.7rem;
-    border:2rem solid rgba(brown,0.5);
+    grid-gap: var(--gridGap);
+    border:var(--containerBorderWidth) solid rgba(brown,0.5);
     background-color:lightgray;
 }
 .boxContainer > *{
-    min-width:6rem;
+    min-width:2rem;
 }
 .box {
     position:relative;
@@ -96,5 +100,32 @@ main{
     100%{
         opacity: 1;
         transform:scale(1);
+    }
+}
+@media(max-width:800px){
+    :root{
+        --boxWidth:4rem;
+        --boxHeight:4rem;
+        --containerPadding:1rem;
+        --containerBorderWidth:1.5rem;
+        --gridGap:0.7rem;
+    }
+}
+@media(max-width:580px){
+    :root{
+        --boxWidth:3rem;
+        --boxHeight:3rem;
+        --containerPadding:0.8rem;
+        --containerBorderWidth:1rem;
+        --gridGap:0.6rem;
+    }
+}
+@media(max-width:320px){
+    :root{
+        --boxWidth:2rem;
+        --boxHeight:2rem;
+        --containerPadding:0.5rem;
+        --containerBorderWidth:1rem;
+        --gridGap:0.5rem;
     }
 }

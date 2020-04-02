@@ -241,9 +241,14 @@ html {
 
 :root {
   --gridColumns:0;
+  --gridGap:0.7rem;
   --boxWidth:6rem;
   --boxHeight:6rem;
   --containerWidth:100rem;
+  --containerPadding:2rem;
+  --containerBorderWidth:2rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .wrapper {
@@ -270,20 +275,20 @@ main {
   max-width: var(--containerWidth);
   width: auto;
   height: auto;
-  padding: 2rem;
+  padding: var(--containerPadding);
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr (1fr)[var];
       grid-template-columns: 1fr repeat(var(--gridColumns), 1fr);
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  grid-gap: 0.7rem;
-  border: 2rem solid rgba(165, 42, 42, 0.5);
+  grid-gap: var(--gridGap);
+  border: var(--containerBorderWidth) solid rgba(165, 42, 42, 0.5);
   background-color: lightgray;
 }
 
 .boxContainer > * {
-  min-width: 6rem;
+  min-width: 2rem;
 }
 
 .box {
@@ -446,5 +451,35 @@ main {
     opacity: 1;
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --boxWidth:4rem;
+    --boxHeight:4rem;
+    --containerPadding:1rem;
+    --containerBorderWidth:1.5rem;
+    --gridGap:0.7rem;
+  }
+}
+
+@media (max-width: 580px) {
+  :root {
+    --boxWidth:3rem;
+    --boxHeight:3rem;
+    --containerPadding:0.8rem;
+    --containerBorderWidth:1rem;
+    --gridGap:0.6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    --boxWidth:2rem;
+    --boxHeight:2rem;
+    --containerPadding:0.5rem;
+    --containerBorderWidth:1rem;
+    --gridGap:0.5rem;
   }
 }

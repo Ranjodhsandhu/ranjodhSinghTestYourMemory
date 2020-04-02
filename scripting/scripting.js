@@ -5,7 +5,7 @@
     const maxStage = 10;
     const minStage = 2;
 
-    let stage = 3;
+    let stage = 2;
     let boxToSelect = stage;
     
     let totalBoxes = stage * stage;
