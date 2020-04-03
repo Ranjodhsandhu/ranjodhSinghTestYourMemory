@@ -50,16 +50,17 @@
         for (let x = 1; x <= totalBoxes; x++) {
             $('.boxContainer')
             .append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
-                        <div class="innerContainer">
-                            <div class="boxFront"></div>
-                            <div class="boxBack"></div>
-                        </div>
-                    </div>`
-                );
+            <div class="innerContainer">
+            <div class="boxFront"></div>
+            <div class="boxBack"></div>
+            </div>
+            </div>`
+            );
         }
         // when the boxes are in place then call the function to show boxes to be selected
         makeRandomSelections();
         showRandomSelections();
+        $('.kg').fadeTo("slow", 0);//.css("visibility", "hidden");
     };
     
     // make the unique random selections out of the given boxes for user to guess
@@ -84,7 +85,7 @@
     }
 
 
-    // reset the stage for next of previous stage to appear
+    // reset the stage for next or previous stage to appear
     const reset = function () {
         $('.boxContainer').empty();
         randomBoxSelection = [];
@@ -96,10 +97,16 @@
         e.preventDefault();
         const selection = parseInt($(this).closest('.box').attr('data-num'));
         const selectionIndex = randomBoxSelection.indexOf(selection);
-        $(this).closest('.box').addClass('active');
-        if (!$(this).hasClass("boxSelected")) {
+        const $boxClicked = $(this);
+        $boxClicked.closest('.box').addClass('active');
+        if (!$boxClicked.hasClass('boxSelected')) {
             userSelectionArray.push(selection);
-            $(this).addClass("boxSelected");
+            $boxClicked.addClass('boxSelected');
+        }
+        $('.kg').fadeTo("slow", 0);//.css('visibility', 'hidden');
+        if(selectionIndex === -1 && (userSelectionArray.length < randomBoxSelection.length)){
+            console.log("keep clicking");
+            $('.kg').fadeTo("slow", 1);//.fadeIn().css('visibility', 'visible');
         } 
         updateCounter((boxToSelect - userSelectionArray.length),stageDisplay);
         if(userSelectionArray.length === randomBoxSelection.length){
