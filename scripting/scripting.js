@@ -3,8 +3,10 @@
     // variable declaration
     const maxStage = 7;
     const minStage = 2;
+
     // starting stage
-    let stage = 4;
+    let stage = 7;
+    let stageDisplay = stage-1;
     // how many boxes to select
     let boxToSelect;
     // total boxes on the board
@@ -15,9 +17,8 @@
     let userSelectionArray = [];
     let hard = false;
     // time for the success alert to stay up
-    const alertTimer = 2000;
-    // view port width
-    let vWidth = $(window).width();
+    const alertTimer = 1500;
+
     // functions definitions
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
@@ -33,27 +34,16 @@
 
     // set the grid structure dynamically as per the number of boxes
     function setGridColumns(){
-        document.documentElement.style.setProperty(`--gridColumns`, `${stage-1}`);
-        let [width,height] = getBoxWidthHeight();
-        document.documentElement.style.setProperty(`--boxWidth`, `${width}rem`);
-        document.documentElement.style.setProperty(`--boxHeight`, `${height}rem`);
+        document.documentElement.style.setProperty(`--gridColumns`, `${stage}`);
     };
-    
-    const getBoxWidthHeight = () => {
-        let [width,height] = [8,8];
-        if (vWidth < 800 && stage >= 7) { width = 5; height = 5;}
-        if (vWidth < 580 && stage >= 6) { width = 4.5; height = 4.5;}
-        if (vWidth < 400 && stage >= 5) { width = 4; height = 4;}
-        if (vWidth < 350 && stage >= 7) { width = 3.8; height = 3.8;}
-        return [width,height];
-    }
 
     // start the game for any given stage
     const start = function () {
         reset();
         boxes();
         setGridColumns();
-        updateCounter(boxToSelect,stage-2);
+        stageDisplay = stage - 1;
+        updateCounter(boxToSelect,stageDisplay);
         // re-calculate total boxes as per the stage
         totalBoxes = stage * stage;
         // add boxes to the container
@@ -115,7 +105,7 @@
         } else {
             setTimeout(stageDiminish,0);
         }
-        updateCounter((boxToSelect - userSelectionArray.length),stage-2);
+        updateCounter((boxToSelect - userSelectionArray.length),stageDisplay);
         if(userSelectionArray.length === boxToSelect){
             // put the stage progress function call to the end of the stack to make it work as expected in this case
             setTimeout(stageProgress,0);
@@ -151,14 +141,15 @@
             icon: result,
             title: resultQuote,
             timer: alertTimer,
-            showConfirmButton: false
+            showConfirmButton: false,
+            allowOutsideClick:false
         });
     }
 
     // update the game info counter
-    const updateCounter = function(boxes,stage){
+    const updateCounter = function(boxes,stageDisplay){
         $('.selectionsLeft span').text(boxes);
-        $('.stage span').text(stage);
+        $('.stage span').text(stageDisplay);
     }
 
     // put a delay on the reset button once it is clicked
@@ -175,13 +166,7 @@
     // define events here
     $('#reset').on('click', resetClickDelay);
     $('.boxContainer').on('click',".boxFront",boxClicked);
-    $(window).on('resize', () => {
-        if ($(this).width() != vWidth) {
-            vWidth = $(this).width();
-            setGridColumns();
-        }
-    });
-
+    
     // start the game with initial stage or minStage
     start();
 })();
