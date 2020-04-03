@@ -5,7 +5,7 @@
     const minStage = 2;
 
     // starting stage
-    let stage = 7;
+    let stage = 3;
     let stageDisplay = stage-1;
     // how many boxes to select
     let boxToSelect;
@@ -97,21 +97,26 @@
         const selection = parseInt($(this).closest('.box').attr('data-num'));
         const selectionIndex = randomBoxSelection.indexOf(selection);
         $(this).closest('.box').addClass('active');
-        if (selectionIndex !== -1) {
-            if (!$(this).hasClass("boxSelected")) {
-                userSelectionArray.push(selection);
-                $(this).addClass("boxSelected");
-            }
-        } else {
-            setTimeout(stageDiminish,0);
-        }
+        if (!$(this).hasClass("boxSelected")) {
+            userSelectionArray.push(selection);
+            $(this).addClass("boxSelected");
+        } 
         updateCounter((boxToSelect - userSelectionArray.length),stageDisplay);
-        if(userSelectionArray.length === boxToSelect){
-            // put the stage progress function call to the end of the stack to make it work as expected in this case
-            setTimeout(stageProgress,0);
+        if(userSelectionArray.length === randomBoxSelection.length){
+            let result = false;
+            result = userSelectionArray.sort().every(function (value, index) { return value === randomBoxSelection.sort()[index] });
+            if(result){
+                setTimeout(stageProgress,0);
+            }else{
+                showActuals();
+                setTimeout(stageDiminish,0);
+            }
         }
     };
-    
+    // if user guessed wrong then show the actual boxes
+    const showActuals = function(){
+        
+    }
     // if user wins, user will go one stage up
     const stageProgress = function(){
         if(stage < maxStage){
@@ -121,7 +126,7 @@
         else
             alertUser('success','You have SHARP Memory!!!');
             
-        setTimeout(start,(alertTimer+200));
+        setTimeout(start,(alertTimer+100));
     }
     // if user loses, user will go one stage down
     const stageDiminish = function(){
@@ -132,7 +137,7 @@
         else
             alertUser('error','Try Again!!!');
 
-        setTimeout(start,alertTimer);
+        setTimeout(start,(alertTimer+100));
     }
     const alertUser = function(result,resultQuote){
         let timerInterval;
