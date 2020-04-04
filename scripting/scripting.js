@@ -62,6 +62,7 @@
         makeRandomSelections();
         showRandomSelections();
         $('.kg').fadeTo("fast", 0);
+        container.css('pointer-events', 'auto');
     };
     
     // make the unique random selections out of the given boxes for user to guess
@@ -119,6 +120,7 @@
             }else{
                 setTimeout(stageDiminish,0);
             }
+            container.css('pointer-events','none');
         }
     };
     // if user guessed wrong then show the actual boxes
@@ -128,7 +130,8 @@
         childrenArray.forEach(function(child){
             const childNum = parseInt(child.getAttribute('data-num'));
             if( leftOvers.indexOf(childNum) !== -1){
-                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color','darkgreen');
+                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color', 'darkgreen').css("pointer-events", "none");;
+                
             }
         });
     }
