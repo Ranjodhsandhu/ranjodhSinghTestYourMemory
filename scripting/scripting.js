@@ -44,9 +44,8 @@
         boxes();
         setGridColumns();
         stageDisplay = stage - 1;
-        updateCounter(boxToSelect,stageDisplay);
-        // re-calculate total boxes as per the stage
         totalBoxes = stage * stage;
+        updateCounter(boxToSelect,stageDisplay);
         // add boxes to the container
         for (let x = 1; x <= totalBoxes; x++) {
             container
@@ -61,8 +60,7 @@
         // when the boxes are in place then call the function to show boxes to be selected
         makeRandomSelections();
         showRandomSelections();
-        $('.kg').fadeTo("fast", 0);
-        container.css('pointer-events', 'auto');
+        $('.kg').fadeTo('fast',0);
     };
     
     // make the unique random selections out of the given boxes for user to guess
@@ -75,6 +73,7 @@
     
     // show the green color on the random boxes for user to remember
     const showRandomSelections = function(){
+        container.css('pointer-events', 'none');
         for (let j = 0; j < randomBoxSelection.length; j++) {
             let temporary = '';
             temporary = '#box' + randomBoxSelection[j];
@@ -82,6 +81,7 @@
             $(temporary).find('.boxBack').addClass('boxRandomBack');
             setTimeout(function(){
                 $(temporary).find('.boxFront').removeClass('boxRandom');
+                container.css('pointer-events', 'auto');
             },(2000 + (j*10)));
         }
     }
@@ -98,7 +98,6 @@
     const boxClicked = function (e) {
         e.preventDefault();
         const selection = parseInt($(this).closest('.box').attr('data-num'));
-        const selectionIndex = randomBoxSelection.indexOf(selection);
         const $boxClicked = $(this);
         $boxClicked.closest('.box').addClass('active');
         // to know if the selected box is added to the user selection array
@@ -106,15 +105,23 @@
             userSelectionArray.push(selection);
             $boxClicked.addClass('boxSelected');
         }
-        if(selectionIndex === -1 && (userSelectionArray.length < randomBoxSelection.length)){
-            console.log("keep clicking");
+        checkResult(selection);
+    };
+    
+    // check the results
+    const checkResult = function(num){
+        const lengthU = userSelectionArray.length;
+        const lengthR = randomBoxSelection.length;
+        const selectionIndex = randomBoxSelection.indexOf(num);
+        updateCounter((boxToSelect - lengthU),stageDisplay);
+        if(selectionIndex === -1 && (lengthU < lengthR)){
             $('.kg').fadeTo('slow', 1);
         } 
-        updateCounter((boxToSelect - userSelectionArray.length),stageDisplay);
-        if(userSelectionArray.length === randomBoxSelection.length){
-            let result = false;
-            result = userSelectionArray.sort().every(function (value, index) { return value === randomBoxSelection.sort()[index] });
-            $('.kg').fadeTo('fast', 0);
+        if(lengthU === lengthR){
+            $('.kg').fadeTo('fast',0);
+            let result = userSelectionArray.sort().every(function (value, index) { 
+                return value === randomBoxSelection.sort()[index] 
+            });
             if(result){
                 setTimeout(stageProgress,0);
             }else{
@@ -122,7 +129,8 @@
             }
             container.css('pointer-events','none');
         }
-    };
+    }
+
     // if user guessed wrong then show the actual boxes
     const showActual = function(){
         const leftOvers = randomBoxSelection.filter(function (obj) { return userSelectionArray.indexOf(obj) == -1; });
@@ -130,8 +138,7 @@
         childrenArray.forEach(function(child){
             const childNum = parseInt(child.getAttribute('data-num'));
             if( leftOvers.indexOf(childNum) !== -1){
-                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color', 'darkgreen').css("pointer-events", "none");;
-                
+                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color', 'darkGreen').css("pointer-events", "none");;   
             }
         });
     }
@@ -140,7 +147,7 @@
     const stageProgress = function(){
         if(stage < maxStage){
             stage++;
-            alertUser('success','Success!!!');
+            // alertUser('success','Success!!!');
         }
         else
             alertUser('success','You have SHARP Memory!!!');
