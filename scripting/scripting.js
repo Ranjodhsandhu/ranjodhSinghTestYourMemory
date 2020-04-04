@@ -16,6 +16,7 @@
     // array to store user selections
     let userSelectionArray = [];
     let hard = false;
+    const container = $('.boxContainer');
     // time for the success alert to stay up
     const alertTimer = 1500;
 
@@ -48,11 +49,11 @@
         totalBoxes = stage * stage;
         // add boxes to the container
         for (let x = 1; x <= totalBoxes; x++) {
-            $('.boxContainer')
-            .append(`<div class="box" id=\"box${x}\" data-num=\"${x}\">
-            <div class="innerContainer">
-            <div class="boxFront"></div>
-            <div class="boxBack"></div>
+            container
+            .append(`<div class='box' id='box${x}' data-num='${x}'>
+            <div class='innerContainer'>
+            <div class='boxFront'></div>
+            <div class='boxBack'></div>
             </div>
             </div>`
             );
@@ -60,7 +61,7 @@
         // when the boxes are in place then call the function to show boxes to be selected
         makeRandomSelections();
         showRandomSelections();
-        $('.kg').fadeTo("slow", 0);//.css("visibility", "hidden");
+        $('.kg').fadeTo("fast", 0);
     };
     
     // make the unique random selections out of the given boxes for user to guess
@@ -99,31 +100,39 @@
         const selectionIndex = randomBoxSelection.indexOf(selection);
         const $boxClicked = $(this);
         $boxClicked.closest('.box').addClass('active');
+        // to know if the selected box is added to the user selection array
         if (!$boxClicked.hasClass('boxSelected')) {
             userSelectionArray.push(selection);
             $boxClicked.addClass('boxSelected');
         }
-        $('.kg').fadeTo("slow", 0);//.css('visibility', 'hidden');
         if(selectionIndex === -1 && (userSelectionArray.length < randomBoxSelection.length)){
             console.log("keep clicking");
-            $('.kg').fadeTo("slow", 1);//.fadeIn().css('visibility', 'visible');
+            $('.kg').fadeTo('slow', 1);
         } 
         updateCounter((boxToSelect - userSelectionArray.length),stageDisplay);
         if(userSelectionArray.length === randomBoxSelection.length){
             let result = false;
             result = userSelectionArray.sort().every(function (value, index) { return value === randomBoxSelection.sort()[index] });
+            $('.kg').fadeTo('fast', 0);
             if(result){
                 setTimeout(stageProgress,0);
             }else{
-                showActuals();
                 setTimeout(stageDiminish,0);
             }
         }
     };
     // if user guessed wrong then show the actual boxes
-    const showActuals = function(){
-        
+    const showActual = function(){
+        const leftOvers = randomBoxSelection.filter(function (obj) { return userSelectionArray.indexOf(obj) == -1; });
+        const childrenArray = Array.from(container.children('.box'));
+        childrenArray.forEach(function(child){
+            const childNum = parseInt(child.getAttribute('data-num'));
+            if( leftOvers.indexOf(childNum) !== -1){
+                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color','darkgreen');
+            }
+        });
     }
+    
     // if user wins, user will go one stage up
     const stageProgress = function(){
         if(stage < maxStage){
@@ -132,22 +141,21 @@
         }
         else
             alertUser('success','You have SHARP Memory!!!');
-            
+        
         setTimeout(start,(alertTimer+100));
     }
     // if user loses, user will go one stage down
     const stageDiminish = function(){
         if(stage > minStage){
-            alertUser('error','Try Again!!!');
             stage--;
         }
         else
             alertUser('error','Try Again!!!');
-
-        setTimeout(start,(alertTimer+100));
+        
+        setTimeout(showActual,300);
+        setTimeout(start,(alertTimer+1000));
     }
     const alertUser = function(result,resultQuote){
-        let timerInterval;
         Swal.fire({
             position: 'top',
             icon: result,
@@ -169,15 +177,15 @@
         e.preventDefault();
         start();
         const $this = $(this);
-        $this.prop("disabled", true);
+        $this.prop('disabled', true);
         setTimeout(function () {
-            $this.prop("disabled", false);
+            $this.prop('disabled', false);
         }, 5000);
     }
     
     // define events here
     $('#reset').on('click', resetClickDelay);
-    $('.boxContainer').on('click',".boxFront",boxClicked);
+    $('.boxContainer').on('click','.boxFront',boxClicked);
     
     // start the game with initial stage or minStage
     start();
