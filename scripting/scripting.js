@@ -20,6 +20,16 @@
     // time for the success alert to stay up
     const alertTimer = 1500;
 
+    // sound clips courtesy of www.freesound.org
+    const cardFlipSound = document.createElement('audio');
+    cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
+    const completedSound = document.createElement('audio');
+    completedSound.setAttribute('src', '../assets/complete.mp3');
+    const correctSound = document.createElement('audio');
+    correctSound.setAttribute('src', '../assets/correct.wav');
+    const wrongSound = document.createElement('audio');
+    wrongSound.setAttribute('src', '../assets/wrong.wav');
+
     // functions definitions
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
@@ -102,6 +112,7 @@
     // perform actions if user clicks any box to play
     const boxClicked = function (e) {
         e.preventDefault();
+        playSound(cardFlipSound);
         const $boxClicked = $(this);
         const selection = parseInt($boxClicked.closest('.box').attr('data-num'));
         $boxClicked.closest('.box').addClass('active');
@@ -113,6 +124,10 @@
         checkResult(selection);
     };
     
+    const playSound = function(sound){
+        sound.currentTime = 0;
+        sound.play();
+    }
     // check the results
     const checkResult = function(num){
         const lengthU = userSelectionArray.length;
@@ -153,10 +168,12 @@
         if(stage < maxStage){
             stage++;
             displayOverlay(stage);
+            playSound(correctSound);
         }
-        else
-        alertUser('success','');
-        
+        else{
+            playSound(completedSound);
+            alertUser('success','');
+        }
         setTimeout(start,(alertTimer+1000));
     }
     // if user loses, user will go one stage down
@@ -164,9 +181,10 @@
         if(stage > minStage){
             stage--;
             displayOverlay(stage);
+            playSound(wrongSound);
         }
         else
-            alertUser('error','');
+        alertUser('error','');
         
         setTimeout(showActual,500);
         setTimeout(start,(alertTimer+1000));
@@ -219,8 +237,9 @@
         $('.gameBoard').css('display','flex');
         $('.instructions').css('display', 'none');
         $('.home').css('display','none');
-    });
-    
+        // start the game with initial stage or minStage
+        start();
+    });    
     $('.how').on('click', function () {
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
@@ -230,6 +249,4 @@
         $('.gameBoard').css('display','none');
         $('.instructions').css('display', 'none');
     });
-    // start the game with initial stage or minStage
-    start();
 })();
