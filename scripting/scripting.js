@@ -22,15 +22,30 @@
 
     // sound clips courtesy of www.freesound.org
     const cardFlipSound = document.createElement('audio');
-    cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
     const completedSound = document.createElement('audio');
-    completedSound.setAttribute('src', '../assets/complete.mp3');
     const correctSound = document.createElement('audio');
-    correctSound.setAttribute('src', '../assets/correct.wav');
     const wrongSound = document.createElement('audio');
+    const buttonClickSound = document.createElement('audio');
+    cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
+    completedSound.setAttribute('src', '../assets/complete.mp3');
+    correctSound.setAttribute('src', '../assets/correct.wav');
     wrongSound.setAttribute('src', '../assets/wrong.wav');
+    buttonClickSound.setAttribute('src', '../assets/button.wav');
 
     // functions definitions
+    // Mute a the audio sound
+    const muteAudio = function(element) {
+        console.log(element+"Hello");
+        element.muted = true;
+        element.pause();
+    }
+
+    // Try to mute all video and audio elements on the page
+    const mutePage = function() {
+        console.log("muting");
+        console.log($('audio'));//.forEach(element => muteAudio(element));
+    }
+
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
         boxToSelect = stage;
@@ -239,14 +254,18 @@
         $('.home').css('display','none');
         // start the game with initial stage or minStage
         start();
+        playSound(buttonClickSound);
     });    
     $('.how').on('click', function () {
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
+        playSound(buttonClickSound);
     });
+    $('.mute').on('click',mutePage);
     $('.back').on('click',function(){
         $('.home').css('display', 'flex');
         $('.gameBoard').css('display','none');
         $('.instructions').css('display', 'none');
     });
+
 })();

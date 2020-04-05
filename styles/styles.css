@@ -302,6 +302,7 @@ main {
 
 .home div:hover {
   background-color: #ebb0b0;
+  cursor: pointer;
 }
 
 span.back {

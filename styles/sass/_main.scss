@@ -33,6 +33,7 @@ main{
     }
     div:hover{
         background-color:lighten(brown,40);
+        cursor: pointer;
     }
 }
 span.back{
