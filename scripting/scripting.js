@@ -91,12 +91,12 @@
         }
     }
     
-    
     // reset the stage for next or previous stage to appear
     const reset = function () {
         $('.boxContainer').empty();
         randomBoxSelection = [];
         userSelectionArray = [];
+        resetButtonDelay();
     };
     
     // perform actions if user clicks any box to play
@@ -196,20 +196,34 @@
     }
 
     // put a delay on the reset button once it is clicked
-    const resetClickDelay = function (e) {
-        e.preventDefault();
+    const resetButtonClick = function () {
         start();
-        const $this = $(this);
-        $this.prop('disabled', true);
+        resetButtonDelay();
+    }
+    const resetButtonDelay = ()=>{
+        const $reset = $('#reset');
+        $reset.prop('disabled', true);
         setTimeout(function () {
-            $this.prop('disabled', false);
-        }, 5000);
+            $reset.prop('disabled', false);
+        }, 2000);
     }
     
     // define events here
-    $('#reset').on('click', resetClickDelay);
+    $('#reset').on('click', resetButtonClick);
     $('.boxContainer').on('click','.boxFront',boxClicked);
     
+    $('.gameBoard').css('display','none');
+    $('.instructions').css('display', 'none');
+
+    $('div.start').on('click',function(){
+        $('.gameBoard').css('display','flex');
+        $('.home').css('display','none');
+    });
+    
+    $('div.how').on('click', function () {
+        $('.instructions').css('display', 'flex');
+        $('.home').css('display', 'none');
+    });
     // start the game with initial stage or minStage
     start();
 })();

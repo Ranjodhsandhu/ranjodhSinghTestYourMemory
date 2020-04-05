@@ -255,6 +255,73 @@ html {
   transition: all 0.3s linear;
 }
 
+body {
+  background-color: brown;
+  font-family: 'Courgette', cursive;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home h1 {
+  font-size: 6rem;
+}
+
+.home div {
+  padding: 2rem;
+  background-color: #cc3636;
+  margin: 1rem 0 1rem 0;
+  font-size: 4rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.home div:hover {
+  background-color: #ebb0b0;
+}
+
+.instructions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 2rem 10rem 2rem 10rem;
+}
+
+.instructions h2 {
+  font-size: 5rem;
+}
+
 .gameBoard {
   width: 90%;
   height: auto;
@@ -268,16 +335,16 @@ html {
           flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  background-color: red;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   margin-top: 2rem;
-  background-color: brown;
   position: relative;
 }
 
 .boxContainer {
-  margin: 5rem;
+  margin: 3rem;
   max-width: var(--containerWidth);
   width: auto;
   height: auto;
@@ -356,11 +423,12 @@ html {
 }
 
 .reset {
-  width: 100px;
+  width: 10rem;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 10px;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .overlay {

@@ -7,6 +7,46 @@
     --containerBorderWidth:2rem;
     transition:all 0.3s linear;
 }
+body{
+    background-color:brown;
+    font-family: 'Courgette', cursive;
+}
+main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    vertical-align: middle;
+    align-items:center;
+}
+.home{
+    display:flex;
+    flex-direction:column;
+    h1{
+        font-size:6rem;
+    }
+    div{
+        padding:2rem;
+        background-color:lighten(brown,10);
+        margin:1rem 0 1rem 0;
+        font-size:4rem;
+        transition:all 0.3s linear;
+    }
+    div:hover{
+        background-color:lighten(brown,40);
+    }
+}
+.instructions{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:2rem 10rem 2rem 10rem;
+    h2{
+        font-size:5rem;
+    }   
+    .guideText{
+        
+    }
+}
 .gameBoard{
     width:90%;
     height:auto;
@@ -14,14 +54,14 @@
     display:flex;
     flex-direction:column;
     justify-content: space-around;
+    background-color:red;
     align-items:center;
     margin-top:2rem;
-    background-color:brown;
     position:relative;
 }
 
 .boxContainer {
-    margin:5rem;
+    margin:3rem;
     max-width:var(--containerWidth);
     width: auto;
     height: auto;
@@ -78,9 +118,10 @@
     background-color: darkgreen;
 }
 .reset{
-    width:100px;
+    width:10rem;
     height:fit-content;
-    padding:10px;
+    padding:1rem;
+    margin:1rem;
 }
 .overlay {
     position:absolute;
@@ -114,6 +155,8 @@ p{
     color:white;
     font-size:2rem;
 }
+
+
 @keyframes fadeTheBox {
     0%{ 
         opacity: 0.9;

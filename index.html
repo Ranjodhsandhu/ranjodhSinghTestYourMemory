@@ -3,15 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- use font awesome fonts -->
+        <script src="https://kit.fontawesome.com/17a7d5f53a.js" crossorigin="anonymous"></script>
+        <!-- include font family -->
+        <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/styles.css">
         <title>Test You Memory</title>
     </head>
     <body>
         <main>
             <div class="home">
-
+                <h1>Test You Memory</h1>
+                <div class="start"><i class="far fa-play-circle"></i> Start</div>
+                <div class="how"><i class="far fa-question-circle"></i> How to play</div>
+                <div class="mute"><i class="fas fa-volume-off"></i> Sound off</div>
+            </div>
+            <div class="instructions">
+                <div class="instructionContainer">
+                </div>
+                <span></span>
+                <h2>Instructions</h2>
+                <div class="guideText">
+                    <p>1. Remember the pattern in yellow color.</p>
+                    <p>2. Click on the boxes you remember in the pattern</p>
+                    <p>3. If you clicked all the correct boxes you will progress by 1 stage</p>
+                    <p>4. If you clicked any wrong boxes you will go down 1 stage</p>
+                </div>
             </div>
             <div class="gameBoard">
                 <div class="overlay"><p class="txt">0</p></div>
@@ -19,14 +37,15 @@
                     <p class="stage">Stage:<span>0</span></p>
                     <p class="selectionsLeft">Selections Left:<span>0</span></p>
                 </div>
+                <button id="reset" class="reset">Reset</button>
                 <div class="boxContainer">
                 </div>
                 <p class="kg">Keep guessing...</p>
-                <button id="reset" class="reset">Reset</button>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.8/dist/sweetalert2.all.min.js"></script>
         <script src="scripting/scripting.js"></script>
+        <script src="scripting/instructions.js"></script>
     </body>
 </html>
