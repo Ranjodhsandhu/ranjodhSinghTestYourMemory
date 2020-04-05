@@ -21,13 +21,13 @@
     const alertTimer = 1500;
 
     // sound clips courtesy of www.freesound.org
-    const cardFlipSound = document.createElement('audio');
-    const completedSound = document.createElement('audio');
+    // const cardFlipSound = document.createElement('audio');
+    // const completedSound = document.createElement('audio');
     const correctSound = document.createElement('audio');
     const wrongSound = document.createElement('audio');
     const buttonClickSound = document.createElement('audio');
-    cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
-    completedSound.setAttribute('src', '../assets/complete.mp3');
+    // cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
+    // completedSound.setAttribute('src', '../assets/complete.mp3');
     correctSound.setAttribute('src', '../assets/correct.wav');
     wrongSound.setAttribute('src', '../assets/wrong.wav');
     buttonClickSound.setAttribute('src', '../assets/button.wav');
@@ -127,7 +127,7 @@
     // perform actions if user clicks any box to play
     const boxClicked = function (e) {
         e.preventDefault();
-        playSound(cardFlipSound);
+        playSound(buttonClickSound);
         const $boxClicked = $(this);
         const selection = parseInt($boxClicked.closest('.box').attr('data-num'));
         $boxClicked.closest('.box').addClass('active');
@@ -183,12 +183,11 @@
         if(stage < maxStage){
             stage++;
             displayOverlay(stage);
-            playSound(correctSound);
         }
         else{
-            playSound(completedSound);
             alertUser('success','');
         }
+        playSound(correctSound);
         setTimeout(start,(alertTimer+1000));
     }
     // if user loses, user will go one stage down
@@ -196,11 +195,11 @@
         if(stage > minStage){
             stage--;
             displayOverlay(stage);
-            playSound(wrongSound);
         }
         else
-        alertUser('error','');
+            alertUser('error','');
         
+        playSound(wrongSound);
         setTimeout(showActual,500);
         setTimeout(start,(alertTimer+1000));
     }
@@ -254,12 +253,10 @@
         $('.home').css('display','none');
         // start the game with initial stage or minStage
         start();
-        playSound(buttonClickSound);
     });    
     $('.how').on('click', function () {
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
-        playSound(buttonClickSound);
     });
     $('.mute').on('click',mutePage);
     $('.back').on('click',function(){
