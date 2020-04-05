@@ -127,7 +127,6 @@
     // perform actions if user clicks any box to play
     const boxClicked = function (e) {
         e.preventDefault();
-        playSound(buttonClickSound);
         const $boxClicked = $(this);
         const selection = parseInt($boxClicked.closest('.box').attr('data-num'));
         $boxClicked.closest('.box').addClass('active');
@@ -152,14 +151,18 @@
         if(selectionIndex === -1 && (lengthU < lengthR)){
             $('.kg').fadeTo('slow', 1);
         } 
+
+        if(lengthU !== lengthR)playSound(buttonClickSound);
         if(lengthU === lengthR){
             $('.kg').fadeTo('fast',0);
             let result = userSelectionArray.sort().every(function (value, index) { 
                 return value === randomBoxSelection.sort()[index] 
             });
             if(result){
+                playSound(correctSound);
                 setTimeout(stageProgress,0);
             }else{
+                playSound(wrongSound);
                 setTimeout(stageDiminish,0);
             }
             container.css('pointer-events','none');
@@ -187,7 +190,6 @@
         else{
             alertUser('success','');
         }
-        playSound(correctSound);
         setTimeout(start,(alertTimer+1000));
     }
     // if user loses, user will go one stage down
@@ -199,7 +201,6 @@
         else
             alertUser('error','');
         
-        playSound(wrongSound);
         setTimeout(showActual,500);
         setTimeout(start,(alertTimer+1000));
     }
@@ -258,7 +259,7 @@
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
     });
-    $('.mute').on('click',mutePage);
+    // $('.mute').on('click',mutePage);
     $('.back').on('click',function(){
         $('.home').css('display', 'flex');
         $('.gameBoard').css('display','none');
