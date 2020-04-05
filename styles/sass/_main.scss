@@ -17,6 +17,7 @@
     align-items:center;
     margin-top:2rem;
     background-color:brown;
+    position:relative;
 }
 
 .boxContainer {
@@ -46,7 +47,7 @@
     height: 100%;
     transform-style: preserve-3d;
     transition: all 0.3s linear;
-    box-shadow: -3px 3px 2px #aaa;
+    box-shadow: 0 0 5px 2px #aaa;
 }
 .box.active .innerContainer {
     transform: rotateY(180deg);
@@ -81,6 +82,34 @@
     height:fit-content;
     padding:10px;
 }
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.1);
+    z-index:9999;
+    color:black;
+    text-align:center;
+    display:none;
+    p.txt {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 10px 15px;
+        position:relative;
+        font-weight:bold;
+        font-size:10rem;
+    }
+}
+.overlay:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
 p{
     color:white;
     font-size:2rem;

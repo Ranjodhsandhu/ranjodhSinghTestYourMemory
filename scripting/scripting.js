@@ -40,13 +40,23 @@
 
     // start the game for any given stage
     const start = function () {
+
         reset();
         boxes();
         setGridColumns();
         stageDisplay = stage - 1;
         totalBoxes = stage * stage;
         updateCounter(boxToSelect,stageDisplay);
-        // add boxes to the container
+        addElements();
+        // when the boxes are in place then call the function to show boxes to be selected
+        makeRandomSelections();
+        showRandomSelections();
+        $('.kg').fadeTo('fast',0);
+        
+    };
+    
+    // add boxes to the container
+    const addElements = ()=>{
         for (let x = 1; x <= totalBoxes; x++) {
             container
             .append(`<div class='box' id='box${x}' data-num='${x}'>
@@ -56,13 +66,8 @@
             </div>
             </div>`
             );
-        }
-        // when the boxes are in place then call the function to show boxes to be selected
-        makeRandomSelections();
-        showRandomSelections();
-        $('.kg').fadeTo('fast',0);
-    };
-    
+        }    
+    }
     // make the unique random selections out of the given boxes for user to guess
     const makeRandomSelections = function(){
         while (randomBoxSelection.length != boxToSelect) {
@@ -85,20 +90,20 @@
             },(2000 + (j*10)));
         }
     }
-
-
+    
+    
     // reset the stage for next or previous stage to appear
     const reset = function () {
         $('.boxContainer').empty();
         randomBoxSelection = [];
         userSelectionArray = [];
     };
-
+    
     // perform actions if user clicks any box to play
     const boxClicked = function (e) {
         e.preventDefault();
-        const selection = parseInt($(this).closest('.box').attr('data-num'));
         const $boxClicked = $(this);
+        const selection = parseInt($boxClicked.closest('.box').attr('data-num'));
         $boxClicked.closest('.box').addClass('active');
         // to know if the selected box is added to the user selection array
         if (!$boxClicked.hasClass('boxSelected')) {
@@ -130,7 +135,7 @@
             container.css('pointer-events','none');
         }
     }
-
+    
     // if user guessed wrong then show the actual boxes
     const showActual = function(){
         const leftOvers = randomBoxSelection.filter(function (obj) { return userSelectionArray.indexOf(obj) == -1; });
@@ -138,7 +143,7 @@
         childrenArray.forEach(function(child){
             const childNum = parseInt(child.getAttribute('data-num'));
             if( leftOvers.indexOf(childNum) !== -1){
-                $(child).children().children('.boxFront').addClass('boxRandom').css('background-color', 'darkGreen').css("pointer-events", "none");;   
+                $(child).find('.boxFront').addClass('boxRandom').css('background-color', 'darkGreen').css("pointer-events", "none");;   
             }
         });
     }
@@ -147,27 +152,35 @@
     const stageProgress = function(){
         if(stage < maxStage){
             stage++;
-            // alertUser('success','Success!!!');
+            displayOverlay(stage);
         }
         else
-            alertUser('success','You have SHARP Memory!!!');
+        alertUser('success','');
         
-        setTimeout(start,(alertTimer+100));
+        setTimeout(start,(alertTimer+1000));
     }
     // if user loses, user will go one stage down
     const stageDiminish = function(){
         if(stage > minStage){
             stage--;
+            displayOverlay(stage);
         }
         else
-            alertUser('error','Try Again!!!');
+            alertUser('error','');
         
-        setTimeout(showActual,300);
+        setTimeout(showActual,500);
         setTimeout(start,(alertTimer+1000));
+    }
+    const displayOverlay = function(stage){
+        stageDisplay = stage - 1;
+        const $overlay = $('.overlay');
+        $overlay.find('.txt').text('Stage '+stageDisplay);
+        $overlay.fadeIn(alertTimer);
+        $overlay.fadeOut(1000);
     }
     const alertUser = function(result,resultQuote){
         Swal.fire({
-            position: 'top',
+            position: 'center',
             icon: result,
             title: resultQuote,
             timer: alertTimer,
