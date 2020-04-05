@@ -304,6 +304,16 @@ main {
   background-color: #ebb0b0;
 }
 
+span.back {
+  font-size: 3rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+span.back:hover {
+  color: white;
+}
+
 .instructions {
   display: -webkit-box;
   display: -ms-flexbox;

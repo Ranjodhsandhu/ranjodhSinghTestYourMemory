@@ -215,14 +215,20 @@
     $('.gameBoard').css('display','none');
     $('.instructions').css('display', 'none');
 
-    $('div.start').on('click',function(){
+    $('.start').on('click',function(){
         $('.gameBoard').css('display','flex');
+        $('.instructions').css('display', 'none');
         $('.home').css('display','none');
     });
     
-    $('div.how').on('click', function () {
+    $('.how').on('click', function () {
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
+    });
+    $('.back').on('click',function(){
+        $('.home').css('display', 'flex');
+        $('.gameBoard').css('display','none');
+        $('.instructions').css('display', 'none');
     });
     // start the game with initial stage or minStage
     start();

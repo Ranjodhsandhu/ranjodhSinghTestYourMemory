@@ -35,6 +35,13 @@ main{
         background-color:lighten(brown,40);
     }
 }
+span.back{
+    font-size:3rem;
+    transition:all 0.3s linear;
+}
+span.back:hover{
+    color:white;
+}
 .instructions{
     display:flex;
     flex-direction:column;
@@ -43,9 +50,6 @@ main{
     h2{
         font-size:5rem;
     }   
-    .guideText{
-        
-    }
 }
 .gameBoard{
     width:90%;
