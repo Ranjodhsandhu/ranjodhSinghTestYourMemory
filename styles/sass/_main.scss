@@ -108,6 +108,9 @@ span.back:hover{
 .box.active .innerContainer {
     transform: rotateY(180deg);
 }
+.box:hover{
+    transform:scale(1.1);
+}
 .boxFront,
 .boxBack{
     position: absolute;
@@ -115,7 +118,9 @@ span.back:hover{
     height: 100%;
     backface-visibility: hidden;
     transition:all 0.3s linear;
+    border:none;
 }
+
 .boxFront{
     background-color:darkcyan;
 }

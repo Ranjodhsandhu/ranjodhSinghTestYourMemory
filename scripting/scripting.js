@@ -25,6 +25,7 @@
     const wrongSound = $('#wrongSound').get(0);
     const buttonClickSound = $('#buttonClickSound').get(0);
 
+
     // functions definitions
     // Mute a the audio sound
     const muteAudio = function(element) {
@@ -80,8 +81,8 @@
             container
             .append(`<div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
-            <div class='boxFront'></div>
-            <div class='boxBack'></div>
+                <button class='boxFront'></button>
+                <button class='boxBack'></button>
             </div>
             </div>`
             );
@@ -135,7 +136,6 @@
     const playSound = function(sound){
         sound.currentTime = 0;
         sound.play();
-
     }
     // check the results
     const checkResult = function(num){
