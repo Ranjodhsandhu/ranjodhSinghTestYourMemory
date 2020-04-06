@@ -20,30 +20,23 @@
     // time for the success alert to stay up
     const alertTimer = 1500;
 
-    // sound clips courtesy of www.freesound.org
-    // const cardFlipSound = document.createElement('audio');
-    // const completedSound = document.createElement('audio');
-    const correctSound = document.createElement('audio');
-    const wrongSound = document.createElement('audio');
-    const buttonClickSound = document.createElement('audio');
-    // cardFlipSound.setAttribute('src', '../assets/card_flip.wav');
-    // completedSound.setAttribute('src', '../assets/complete.mp3');
-    correctSound.setAttribute('src', '../assets/correct.wav');
-    wrongSound.setAttribute('src', '../assets/wrong.wav');
-    buttonClickSound.setAttribute('src', '../assets/button.wav');
+    // sound clips courtesy of https://www.freesound.org
+
+    const correctSound = $('#correctSound').get(0);
+    const wrongSound = $('#wrongSound').get(0);
+    const buttonClickSound = $('#buttonClickSound').get(0);
 
     // functions definitions
     // Mute a the audio sound
     const muteAudio = function(element) {
-        console.log(element+"Hello");
-        element.muted = true;
+        element.muted = !element.muted;
         element.pause();
     }
 
     // Try to mute all video and audio elements on the page
     const mutePage = function() {
-        console.log("muting");
-        console.log($('audio'));//.forEach(element => muteAudio(element));
+        Array.from($('audio')).forEach(element => muteAudio(element));
+        
     }
 
     // look for how many boxes will be there for user to guess
@@ -65,7 +58,6 @@
 
     // start the game for any given stage
     const start = function () {
-
         reset();
         boxes();
         setGridColumns();
@@ -140,7 +132,9 @@
     
     const playSound = function(sound){
         sound.currentTime = 0;
+        // console.log(sound);
         sound.play();
+
     }
     // check the results
     const checkResult = function(num){
@@ -153,10 +147,12 @@
         } 
 
         if(lengthU !== lengthR)playSound(buttonClickSound);
+        
         if(lengthU === lengthR){
             $('.kg').fadeTo('fast',0);
-            let result = userSelectionArray.sort().every(function (value, index) { 
-                return value === randomBoxSelection.sort()[index] 
+            let result = userSelectionArray.sort()
+                            .every(function (value, index) { 
+                            return value === randomBoxSelection.sort()[index] 
             });
             if(result){
                 playSound(correctSound);
@@ -171,12 +167,18 @@
     
     // if user guessed wrong then show the actual boxes
     const showActual = function(){
-        const leftOvers = randomBoxSelection.filter(function (obj) { return userSelectionArray.indexOf(obj) == -1; });
+        const leftOvers = randomBoxSelection.filter(function (obj) { 
+            return userSelectionArray.indexOf(obj) == -1; 
+        });
         const childrenArray = Array.from(container.children('.box'));
         childrenArray.forEach(function(child){
             const childNum = parseInt(child.getAttribute('data-num'));
             if( leftOvers.indexOf(childNum) !== -1){
-                $(child).find('.boxFront').addClass('boxRandom').css('background-color', 'darkGreen').css("pointer-events", "none");;   
+                $(child)
+                .find('.boxFront')
+                .addClass('boxRandom')
+                .css('background-color', 'darkGreen')
+                .css("pointer-events", "none");;   
             }
         });
     }
@@ -211,6 +213,7 @@
         $overlay.fadeIn(alertTimer);
         $overlay.fadeOut(1000);
     }
+    // this function uses the sweetAlert2 library
     const alertUser = function(result,resultQuote){
         Swal.fire({
             position: 'center',
@@ -259,7 +262,7 @@
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
     });
-    // $('.mute').on('click',mutePage);
+    $('.mute').on('click',mutePage);
     $('.back').on('click',function(){
         $('.home').css('display', 'flex');
         $('.gameBoard').css('display','none');
