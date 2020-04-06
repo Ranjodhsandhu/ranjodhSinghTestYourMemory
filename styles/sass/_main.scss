@@ -5,11 +5,6 @@
     --boxBorder:0.2rem;
     --containerWidth:100rem;
     --containerBorderWidth:2rem;
-    transition:all 0.3s linear;
-}
-body{
-    background-color:brown;
-    font-family: 'Courgette', cursive;
 }
 main{
     display:flex;
@@ -23,6 +18,7 @@ main{
     flex-direction:column;
     h1{
         font-size:6rem;
+        text-align:center;
     }
     div{
         padding:2rem;
@@ -50,7 +46,23 @@ span.back:hover{
     margin:2rem 10rem 2rem 10rem;
     h2{
         font-size:5rem;
-    }   
+    }
+}
+.gameInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    *{
+        margin:0.5rem;
+        text-align:center;
+        font-size:3rem;
+        transition:all 0.3s linear;
+        color:white;
+    }
+    *:hover{
+        transform:scale(1.1);
+    }
 }
 .gameBoard{
     width:90%;
@@ -61,12 +73,11 @@ span.back:hover{
     justify-content: space-around;
     background-color:red;
     align-items:center;
-    margin-top:2rem;
     position:relative;
 }
 
 .boxContainer {
-    margin:3rem;
+    margin:0.5rem 3rem 3rem 3rem ;
     max-width:var(--containerWidth);
     width: auto;
     height: auto;
@@ -123,10 +134,15 @@ span.back:hover{
     background-color: darkgreen;
 }
 .reset{
-    width:10rem;
-    height:fit-content;
-    padding:1rem;
-    margin:1rem;
+    padding:0.5rem;
+    color:white;
+    background:transparent;
+    border:none;
+    font-size:1.5rem;
+    transition:all 0.3s linear;
+}
+.reset:hover{
+    transform:rotate(360deg);
 }
 .overlay {
     position:absolute;
@@ -154,13 +170,6 @@ span.back:hover{
     height: 100%;
     vertical-align: middle;
 }
-
-
-p{
-    color:white;
-    font-size:2rem;
-}
-
 
 @keyframes fadeTheBox {
     0%{ 

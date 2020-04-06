@@ -15,9 +15,9 @@
         <main>
             <div class="home">
                 <h1>Test You Memory</h1>
-                <div class="start"><i class="far fa-play-circle"></i> Start</div>
+                <div class="start"><i class="far fa-play-circle"></i> Play</div>
                 <div class="how"><i class="far fa-question-circle"></i> How to play</div>
-                <div class="mute"><i class="fas fa-volume-off"></i> Sound off</div>
+                <div class="mute"><i class="fas fa-volume-up"></i> Sound </div>
                 <audio src="../assets/correct.wav" id="correctSound">
                 </audio>
                 <audio src="../assets/wrong.wav" id="wrongSound">
@@ -26,8 +26,6 @@
                 </audio>
             </div>
             <div class="instructions">
-                <div class="instructionContainer">
-                </div>
                 <span class="back"><i class="fas fa-hand-point-left"></i></span>
                 <h2>Instructions</h2>
                 <div class="guideText">
@@ -42,12 +40,13 @@
                 <div class="gameInfo">
                     <span class="back"><i class="fas fa-hand-point-left"></i></span>
                     <p class="stage">Stage:<span>0</span></p>
-                    <p class="selectionsLeft">Selections Left:<span>0</span></p>
-                </div>
-                <button id="reset" class="reset">Reset</button>
-                <div class="boxContainer">
+                    <p class="selectionsLeft">Remaining:<span>0</span></p>
+                    <button id="reset" class="reset"><i class="fas fa-redo-alt"></i></button>
+                    <div class="mute"><i class="fas fa-volume-up"></i></div>
                 </div>
                 <p class="kg">Keep guessing...</p>
+                <div class="boxContainer">
+                </div>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

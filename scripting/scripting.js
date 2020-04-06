@@ -21,7 +21,6 @@
     const alertTimer = 1500;
 
     // sound clips courtesy of https://www.freesound.org
-
     const correctSound = $('#correctSound').get(0);
     const wrongSound = $('#wrongSound').get(0);
     const buttonClickSound = $('#buttonClickSound').get(0);
@@ -31,12 +30,16 @@
     const muteAudio = function(element) {
         element.muted = !element.muted;
         element.pause();
+        element.currentTime = 0;
     }
 
-    // Try to mute all video and audio elements on the page
-    const mutePage = function() {
+    // to mute all audio elements on the page
+    const toggleMute = function() {
+        const $soundOnOff = $('.mute').find($('.fas'));
+        $soundOnOff.toggleClass('fa-volume-off').toggleClass('fa-volume-up');
         Array.from($('audio')).forEach(element => muteAudio(element));
-        
+        if($soundOnOff.hasClass('fa-volume-up'))
+        playSound(correctSound);
     }
 
     // look for how many boxes will be there for user to guess
@@ -68,8 +71,7 @@
         // when the boxes are in place then call the function to show boxes to be selected
         makeRandomSelections();
         showRandomSelections();
-        $('.kg').fadeTo('fast',0);
-        
+        $('.kg').fadeTo('fast',0);  
     };
     
     // add boxes to the container
@@ -132,7 +134,6 @@
     
     const playSound = function(sound){
         sound.currentTime = 0;
-        // console.log(sound);
         sound.play();
 
     }
@@ -262,11 +263,10 @@
         $('.instructions').css('display', 'flex');
         $('.home').css('display', 'none');
     });
-    $('.mute').on('click',mutePage);
+    $('.mute').on('click',toggleMute);
     $('.back').on('click',function(){
         $('.home').css('display', 'flex');
         $('.gameBoard').css('display','none');
         $('.instructions').css('display', 'none');
     });
-
 })();

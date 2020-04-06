@@ -239,9 +239,19 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  background-color: brown;
+  font-family: 'Courgette', cursive;
+}
+
 .wrapper {
   max-width: 80%;
   margin: 0 auto;
+}
+
+p {
+  color: white;
+  font-size: 2rem;
 }
 
 :root {
@@ -251,13 +261,6 @@ html {
   --boxBorder:0.2rem;
   --containerWidth:100rem;
   --containerBorderWidth:2rem;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-
-body {
-  background-color: brown;
-  font-family: 'Courgette', cursive;
 }
 
 main {
@@ -289,6 +292,7 @@ main {
 
 .home h1 {
   font-size: 6rem;
+  text-align: center;
 }
 
 .home div {
@@ -333,6 +337,34 @@ span.back:hover {
   font-size: 5rem;
 }
 
+.gameInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.gameInfo * {
+  margin: 0.5rem;
+  text-align: center;
+  font-size: 3rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: white;
+}
+
+.gameInfo *:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .gameBoard {
   width: 90%;
   height: auto;
@@ -350,12 +382,11 @@ span.back:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 2rem;
   position: relative;
 }
 
 .boxContainer {
-  margin: 3rem;
+  margin: 0.5rem 3rem 3rem 3rem;
   max-width: var(--containerWidth);
   width: auto;
   height: auto;
@@ -434,12 +465,18 @@ span.back:hover {
 }
 
 .reset {
-  width: 10rem;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 1rem;
-  margin: 1rem;
+  padding: 0.5rem;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.reset:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 
 .overlay {
@@ -469,11 +506,6 @@ span.back:hover {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-}
-
-p {
-  color: white;
-  font-size: 2rem;
 }
 
 @-webkit-keyframes fadeTheBox {
