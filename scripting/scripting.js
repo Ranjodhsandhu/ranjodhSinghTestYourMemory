@@ -25,7 +25,9 @@
     const wrongSound = $('#wrongSound').get(0);
     const buttonClickSound = $('#buttonClickSound').get(0);
 
-
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    
     // functions definitions
     // Mute a the audio sound
     const muteAudio = function(element) {
