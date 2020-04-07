@@ -27,15 +27,42 @@
 
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioCtx = new AudioContext();
-    
+
     // functions definitions
+    /* inputOptions can be an object or Promise */
+    const inputOptions = {
+        false:'Go easy',
+        true:'A bit of Challenge'
+    }
+
+    async function f1() {
+        const { value: userInput } = await Swal.fire({
+            title: 'Select level!!!',
+            input: 'radio',
+            inputOptions: inputOptions,
+            allowOutsideClick:false,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Select a level!';
+                }
+            }
+        })
+        hard = userInput;
+        console.log(hard);
+        $('.gameBoard').css('display', 'flex');
+        $('.instructions').css('display', 'none');
+        $('.home').css('display', 'none');
+        start();
+    }
+    
+    
     // Mute a the audio sound
     const muteAudio = function(element) {
         element.muted = !element.muted;
         element.pause();
         element.currentTime = 0;
     }
-
+    
     // to mute all audio elements on the page
     const toggleMute = function() {
         const $soundOnOff = $('.mute').find($('.fas'));
@@ -44,7 +71,7 @@
         if($soundOnOff.hasClass('fa-volume-up'))
         playSound(correctSound);
     }
-
+    
     // look for how many boxes will be there for user to guess
     const boxes = ()=> {
         boxToSelect = stage;
@@ -56,14 +83,15 @@
             if (stage === 7) { boxToSelect = stage + 7; }
         }
     };
-
+    
     // set the grid structure dynamically as per the number of boxes
     function setGridColumns(){
         document.documentElement.style.setProperty(`--gridColumns`, `${stage}`);
     };
-
+    
     // start the game for any given stage
     const start = function () {
+        // f1();
         reset();
         boxes();
         setGridColumns();
@@ -77,6 +105,11 @@
         $('.kg').fadeTo('fast',0);  
     };
     
+    // get the user input either easy or hard
+    const getHardship = function(){
+
+    }
+
     // add boxes to the container
     const addElements = ()=>{
         for (let x = 1; x <= totalBoxes; x++) {
@@ -255,11 +288,9 @@
     $('.instructions').css('display', 'none');
 
     $('.start').on('click',function(){
-        $('.gameBoard').css('display','flex');
-        $('.instructions').css('display', 'none');
-        $('.home').css('display','none');
+        f1();
         // start the game with initial stage or minStage
-        start();
+        // start();
     });    
     $('.how').on('click', function () {
         $('.instructions').css('display', 'flex');
