@@ -29,26 +29,20 @@
     const audioCtx = new AudioContext();
 
     // functions definitions
-    /* inputOptions can be an object or Promise */
+    /* object to get value from user */
     const inputOptions = {
-        false:'Go easy',
-        true:'A bit of Challenge'
+        'false':'Go easy',
+        'true':'A bit of Challenge'
     }
 
     async function f1() {
-        const { value: userInput } = await Swal.fire({
+        const { value: userInput } =  await Swal.fire({
             title: 'Select level!!!',
             input: 'radio',
             inputOptions: inputOptions,
-            allowOutsideClick:false,
-            inputValidator: (value) => {
-                if (!value) {
-                    return 'Select a level!';
-                }
-            }
-        })
-        hard = userInput;
-        console.log(hard);
+            allowOutsideClick:false
+        });
+        hard =  (userInput === 'true');
         $('.gameBoard').css('display', 'flex');
         $('.instructions').css('display', 'none');
         $('.home').css('display', 'none');
