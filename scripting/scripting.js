@@ -1,3 +1,6 @@
+const testMemory = {};
+
+
 // load script when page is ready
 (function () {
     // variable declaration
@@ -164,8 +167,11 @@
     
     const playSound = function(sound){
         sound.currentTime = 0;
-        sound.play();
+        sound.play().then(()=>{
+            console.log(sound.currentTime);
+        });
     }
+
     // check the results
     const checkResult = function(num){
         const lengthU = userSelectionArray.length;

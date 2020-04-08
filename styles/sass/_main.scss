@@ -2,7 +2,7 @@
     --gridColumns:0;
     --boxWidth:6vw;
     --boxHeight:6vw;
-    --boxBorder:0.2rem;
+    --boxBorder:0.3rem;
     --containerWidth:100rem;
     --containerBorderWidth:2rem;
 }
@@ -127,7 +127,6 @@ span.back:hover{
 .boxBack {
     transform: rotateY(180deg);
     background-color:red;
-    
 }
 .boxRandom {
     background-color: yellow;
