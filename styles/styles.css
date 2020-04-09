@@ -240,8 +240,8 @@ html {
 }
 
 body {
-  background-color: brown;
-  font-family: 'Courgette', cursive;
+  background-color: #a6b1e1;
+  font-family: "Courgette", cursive;
 }
 
 .wrapper {
@@ -250,7 +250,7 @@ body {
 }
 
 p {
-  color: white;
+  color: #f4f4f4;
   font-size: 2rem;
 }
 
@@ -258,7 +258,7 @@ p {
   --gridColumns:0;
   --boxWidth:6vw;
   --boxHeight:6vw;
-  --boxBorder:0.2rem;
+  --boxBorder:0.3rem;
   --containerWidth:100rem;
   --containerBorderWidth:2rem;
 }
@@ -297,7 +297,7 @@ main {
 
 .home div {
   padding: 2rem;
-  background-color: #cc3636;
+  background-color: #ccd2ee;
   margin: 1rem 0 1rem 0;
   font-size: 4rem;
   -webkit-transition: all 0.3s linear;
@@ -305,7 +305,7 @@ main {
 }
 
 .home div:hover {
-  background-color: #ebb0b0;
+  background-color: white;
   cursor: pointer;
 }
 
@@ -316,7 +316,7 @@ span.back {
 }
 
 span.back:hover {
-  color: white;
+  color: #f4f4f4;
 }
 
 .instructions {
@@ -357,7 +357,7 @@ span.back:hover {
   font-size: 3rem;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  color: white;
+  color: #f4f4f4;
 }
 
 .gameInfo *:hover {
@@ -378,7 +378,7 @@ span.back:hover {
           flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  background-color: red;
+  background-color: #424874;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -396,8 +396,8 @@ span.back:hover {
       grid-template-columns: repeat(var(--gridColumns), auto);
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  border: var(--containerBorderWidth) solid lightcyan;
-  background-color: lightcyan;
+  border: var(--containerBorderWidth) solid #b2a3b5;
+  background-color: #b2a3b5;
 }
 
 .boxContainer > * {
@@ -417,16 +417,21 @@ span.back:hover {
   width: 100%;
   height: 100%;
   -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+          transform-style: preserve-3d;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
   -webkit-box-shadow: 0 0 5px 2px #aaa;
-  box-shadow: 0 0 5px 2px #aaa;
+          box-shadow: 0 0 5px 2px #aaa;
 }
 
 .box.active .innerContainer {
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.box:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .boxFront,
@@ -435,24 +440,24 @@ span.back:hover {
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+          backface-visibility: hidden;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  border:none;
+  border: none;
 }
 
 .boxFront {
-  background-color: darkcyan;
+  background-color: #58374d;
 }
 
 .boxBack {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  background-color: red;
+  background-color: #cd2224;
 }
 
 .boxRandom {
-  background-color: yellow;
+  background-color: #f1bf98;
   -webkit-transition: all 1s linear;
   transition: all 1s linear;
   -webkit-animation: fadeTheBox 1s linear;
@@ -461,13 +466,13 @@ span.back:hover {
 
 .boxRandomBack {
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-  background-color: darkgreen;
+          transform: rotateY(180deg);
+  background-color: #2a562d;
 }
 
 .reset {
   padding: 0.5rem;
-  color: white;
+  color: #f4f4f4;
   background: transparent;
   border: none;
   font-size: 1.5rem;
@@ -488,7 +493,7 @@ span.back:hover {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.1);
   z-index: 9999;
-  color: black;
+  color: #141623;
   text-align: center;
   display: none;
 }

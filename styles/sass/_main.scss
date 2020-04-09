@@ -22,13 +22,13 @@ main{
     }
     div{
         padding:2rem;
-        background-color:lighten(brown,10);
+        background-color:lighten($backgroundColor,10);
         margin:1rem 0 1rem 0;
         font-size:4rem;
         transition:all 0.3s linear;
     }
     div:hover{
-        background-color:lighten(brown,40);
+        background-color:lighten($backgroundColor,40);
         cursor: pointer;
     }
 }
@@ -37,7 +37,7 @@ span.back{
     transition:all 0.3s linear;
 }
 span.back:hover{
-    color:white;
+    color:$primaryTextColor;
 }
 .instructions{
     display:flex;
@@ -58,7 +58,7 @@ span.back:hover{
         text-align:center;
         font-size:3rem;
         transition:all 0.3s linear;
-        color:white;
+        color:$primaryTextColor;
     }
     *:hover{
         transform:scale(1.1);
@@ -71,7 +71,7 @@ span.back:hover{
     display:flex;
     flex-direction:column;
     justify-content: space-around;
-    background-color:red;
+    background-color:$gameBoardBackground;
     align-items:center;
     position:relative;
 }
@@ -84,8 +84,8 @@ span.back:hover{
     display: grid;
     grid-template-columns: repeat(var(--gridColumns), auto);
     grid-template-rows: 1fr;    
-    border:var(--containerBorderWidth) solid lightcyan;
-    background-color:lightcyan;
+    border:var(--containerBorderWidth) solid $containerColor;
+    background-color:$containerColor;
 }
 
 .boxContainer > *{
@@ -122,24 +122,24 @@ span.back:hover{
 }
 
 .boxFront{
-    background-color:darkcyan;
+    background-color:$frontColor;
 }
 .boxBack {
     transform: rotateY(180deg);
-    background-color:red;
+    background-color:lighten($wrongColor,10);
 }
 .boxRandom {
-    background-color: yellow;
+    background-color: $randomColor;
     transition:all 1s linear;
     animation:fadeTheBox 1s linear;
 }
 .boxRandomBack{
     transform: rotateY(180deg);
-    background-color: darkgreen;
+    background-color: lighten($rightColor,10);
 }
 .reset{
     padding:0.5rem;
-    color:white;
+    color:$primaryTextColor;
     background:transparent;
     border:none;
     font-size:1.5rem;
@@ -156,7 +156,7 @@ span.back:hover{
     bottom:0;
     background-color:rgba(0, 0, 0, 0.1);
     z-index:9999;
-    color:black;
+    color:$secondaryColor;
     text-align:center;
     display:none;
     p.txt {

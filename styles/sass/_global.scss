@@ -2,14 +2,14 @@ html{
     font-size:62.5%;
 }
 body{
-    background-color:brown;
-    font-family: 'Courgette', cursive;
+    background-color:$backgroundColor;
+    font-family: $primaryFont;
 }
 .wrapper{
     max-width:80%;
     margin:0 auto;
 }
 p{
-    color:white;
+    color:$primaryTextColor;
     font-size:2rem;
 }
