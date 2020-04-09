@@ -281,8 +281,10 @@ const testMemory = {};
             $reset.prop('disabled', false);
         }, 2000);
     }
-    
+
     // add tool tip to the action button on hovering
+    if (window.matchMedia("(max-width: 767px)").matches){}
+    else
     $('.guideTip').hover(function () {
         let title = $(this).attr('data-tooltip');
         $(this).data('tipText', title);

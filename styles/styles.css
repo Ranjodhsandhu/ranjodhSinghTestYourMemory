@@ -700,6 +700,6 @@ button.back:hover,
     font-size: 2.5rem;
   }
   .actionButtons > *, button.back {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
