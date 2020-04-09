@@ -114,7 +114,7 @@ const testMemory = {};
             .append(`<div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
                 <label for="f${x}" class="sr-only">Box ${x}</label>
-                <button class='boxFront' id="f${x}" aria-label="Box ${x}"></button>
+                <button class='boxFront' id="f${x}" aria-label="Box ${x}" tabindex="${8+x}"></button>
                 <label for="b${x}" class="sr-only">Box ${x}</label>
                 <button class='boxBack' id="b${x}"aria-label="Box ${x}"></button>
             </div>
@@ -170,7 +170,7 @@ const testMemory = {};
     const playSound = function(sound){
         sound.currentTime = 0;
         sound.play().then(()=>{
-            console.log(sound.currentTime);
+            sound.currentTime = 0;
         });
     }
 
@@ -282,6 +282,24 @@ const testMemory = {};
         }, 2000);
     }
     
+    // add tool tip to the action button on hovering
+    $('.guideTip').hover(function () {
+        let title = $(this).attr('data-tooltip');
+        $(this).data('tipText', title);
+        if (title == '') { }
+        else {
+            $('<p class="tooltip"></p>').fadeIn(200).text(title).appendTo('body');
+        }
+    }, function () {
+            $(this).attr('data-tooltip', $(this).data('tipText'));
+            $('.tooltip').fadeOut(200);
+        }).mousemove(function (e) {
+        // tooltip should follow the cursor on desktop or laptop
+        let mousex = e.pageX+30;
+        let mousey = e.pageY+60;
+        $('.tooltip').css({top: mousey,left: mousex});
+    });
+
     // define events here
     $('#reset').on('click', resetButtonClick);
     $('.boxContainer').on('click','.boxFront',boxClicked);

@@ -15,19 +15,17 @@
         <main>
             <div class="home">
                 <h1>Test You Memory</h1>
-                <div class="start"><i class="far fa-play-circle"></i> Play</div>
-                <div class="how"><i class="far fa-question-circle"></i> How to play</div>
-                <div class="mute"><i class="fas fa-volume-up"></i> Sound </div>
-                <audio src="../assets/correct.wav" id="correctSound" preload="auto">
-                    
-                </audio>
-                <audio src="../assets/wrong.wav" id="wrongSound" preload="auto">
-                </audio>
-                <audio src="../assets/button.wav" id="buttonClickSound" preload="auto">
-                </audio>
+                <button class="start"><i class="far fa-play-circle" tabIndex="1"></i> Play</button>
+                <button class="how"><i class="far fa-question-circle" tabIndex="2"></i> How to play</button>
+                <button class="mute"><i class="fas fa-volume-up" tabIndex="3"></i> Sound </button>
+                <audio src="../assets/correct.wav" id="correctSound" preload="auto"></audio>
+                <audio src="../assets/wrong.wav" id="wrongSound" preload="auto"></audio>
+                <audio src="../assets/button.wav" id="buttonClickSound" preload="auto"></audio>
             </div>
             <div class="instructions">
-                <span class="back"><i class="fas fa-hand-point-left"></i></span>
+                <button class="back" aria-label="Main Menu" tabindex="4">
+                    <i class="fas fa-hand-point-left"></i>
+                </button>
                 <h2>Instructions</h2>
                 <div class="guideText">
                     <p>1. Remember the pattern in yellow color.</p>
@@ -37,15 +35,23 @@
                 </div>
             </div>
             <div class="gameBoard">
-                <div class="overlay"><p class="txt">0</p></div>
-                <div class="gameInfo">
-                    <span class="back"><i class="fas fa-hand-point-left"></i></span>
-                    <h2 class="stage">Stage:<span>0</span></h2>
-                    <h2 class="selectionsLeft">Remaining:<span>0</span></h2>
-                    <button id="reset" class="reset" aria-label="Reset">
+                <div class="overlay">
+                    <p class="txt">0</p>
+                </div>
+                <div class="actionButtons">
+                    <button class="back guideTip" aria-label="Main Menu" data-tooltip="Main Menu" tabIndex="5">
+                        <i class="fas fa-hand-point-left"></i>
+                    </button>
+                    <button id="reset" class="reset guideTip" aria-label="Reset" data-tooltip="Reset Grid" tabIndex="6">
                         <i class="fas fa-redo-alt"></i>
                     </button>
-                    <div class="mute"><i class="fas fa-volume-up"></i></div>
+                    <button class="mute guideTip" aria-label="Mute" data-tooltip="Sound" tabIndex="8">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                <div class="gameInfo">
+                    <h2 class="stage">Stage:<span>0</span></h2>
+                    <h2 class="selectionsLeft">Remaining:<span>0</span></h2>
                 </div>
                 <p class="kg">Keep guessing...</p>
                 <div class="boxContainer">

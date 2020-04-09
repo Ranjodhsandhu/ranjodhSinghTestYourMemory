@@ -295,28 +295,24 @@ main {
   text-align: center;
 }
 
-.home div {
+.home button {
   padding: 2rem;
   background-color: #ccd2ee;
   margin: 1rem 0 1rem 0;
   font-size: 4rem;
+  border: none;
+  text-align: left;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
 
-.home div:hover {
+.home button:hover {
   background-color: white;
   cursor: pointer;
 }
 
-span.back {
-  font-size: 3rem;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-
-span.back:hover {
-  color: #f4f4f4;
+.home audio {
+  display: none;
 }
 
 .instructions {
@@ -349,15 +345,16 @@ span.back:hover {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  max-width: 80%;
 }
 
 .gameInfo * {
   margin: 0.5rem;
   text-align: center;
   font-size: 3rem;
+  color: #f4f4f4;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  color: #f4f4f4;
 }
 
 .gameInfo *:hover {
@@ -383,6 +380,39 @@ span.back:hover {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+}
+
+.actionButtons {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+button.back,
+.actionButtons > * {
+  background: none;
+  border: none;
+  color: #f4f4f4;
+  padding: 0.5rem;
+  font-size: 3rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+button.back:hover,
+.actionButtons > *:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .boxContainer {
@@ -470,21 +500,6 @@ span.back:hover {
   background-color: #19341b;
 }
 
-.reset {
-  padding: 0.5rem;
-  color: #f4f4f4;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-
-.reset:hover {
-  -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
-
 .overlay {
   position: absolute;
   top: 0;
@@ -502,9 +517,9 @@ span.back:hover {
   display: inline-block;
   vertical-align: middle;
   padding: 10px 15px;
-  position: relative;
   font-weight: bold;
   font-size: 10rem;
+  position: relative;
 }
 
 .overlay:before {
@@ -512,6 +527,27 @@ span.back:hover {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
+}
+
+.tooltip {
+  font-size: 1.5rem;
+  color: #141623;
+  background-color: #f4f4f4;
+  display: none;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 7px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: nowrap;
+  text-align: center;
+  -webkit-transform: translate(-50%, -200%);
+          transform: translate(-50%, -200%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
 }
 
 @-webkit-keyframes fadeTheBox {
@@ -624,6 +660,9 @@ span.back:hover {
     width: 10vw;
     height: 10vw;
   }
+  .overlay p.txt {
+    font-size: 8rem;
+  }
 }
 
 @media (max-width: 820px) and (orientation: landscape) {
@@ -641,11 +680,26 @@ span.back:hover {
     width: 11vw;
     height: 11vw;
   }
+  .overlay p.txt {
+    font-size: 6rem;
+  }
+  .actionButtons > *, button.back {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 400px) {
   :root {
     --containerBorderWidth:1rem;
     --boxBorder:0.2rem;
+  }
+  .overlay p.txt {
+    font-size: 5rem;
+  }
+  .gameInfo > * {
+    font-size: 2.5rem;
+  }
+  .actionButtons > *, button.back {
+    font-size: 1.8rem;
   }
 }

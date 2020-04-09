@@ -20,24 +20,22 @@ main{
         font-size:6rem;
         text-align:center;
     }
-    div{
+    button{
         padding:2rem;
         background-color:lighten($backgroundColor,10);
         margin:1rem 0 1rem 0;
         font-size:4rem;
+        border:none;
+        text-align:left;
         transition:all 0.3s linear;
     }
-    div:hover{
+    button:hover{
         background-color:lighten($backgroundColor,40);
         cursor: pointer;
     }
-}
-span.back{
-    font-size:3rem;
-    transition:all 0.3s linear;
-}
-span.back:hover{
-    color:$primaryTextColor;
+    audio{
+        display:none;
+    }
 }
 .instructions{
     display:flex;
@@ -53,12 +51,13 @@ span.back:hover{
     justify-content: center;
     align-items: center;
     flex-wrap:wrap;
+    max-width:80%;
     *{
         margin:0.5rem;
         text-align:center;
         font-size:3rem;
-        transition:all 0.3s linear;
         color:$primaryTextColor;
+        transition:all 0.3s linear;
     }
     *:hover{
         transform:scale(1.1);
@@ -74,6 +73,27 @@ span.back:hover{
     background-color:$gameBoardBackground;
     align-items:center;
     position:relative;
+}
+.actionButtons{
+    position:absolute;
+    top:0.5rem;
+    left:1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+button.back,
+.actionButtons > * {
+    background:none;
+    border:none;
+    color:$primaryTextColor;
+    padding:0.5rem;
+    font-size:3rem;
+    transition:all 0.3s linear;
+    &:hover{
+        transform:scale(1.2);
+    }
 }
 
 .boxContainer {
@@ -137,17 +157,6 @@ span.back:hover{
     transform: rotateY(180deg);
     background-color: $rightColor;
 }
-.reset{
-    padding:0.5rem;
-    color:$primaryTextColor;
-    background:transparent;
-    border:none;
-    font-size:1.5rem;
-    transition:all 0.3s linear;
-}
-.reset:hover{
-    transform:rotate(360deg);
-}
 .overlay {
     position:absolute;
     top:0;
@@ -163,9 +172,9 @@ span.back:hover{
         display: inline-block;
         vertical-align: middle;
         padding: 10px 15px;
-        position:relative;
         font-weight:bold;
         font-size:10rem;
+        position:relative;
     }
 }
 .overlay:before {
@@ -174,7 +183,23 @@ span.back:hover{
     height: 100%;
     vertical-align: middle;
 }
-
+.tooltip {
+    font-size:1.5rem;
+    color: $secondaryColor;
+    background-color: $primaryTextColor;
+    display: none;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 7px;
+    width: fit-content;
+    white-space: nowrap;
+    text-align: center;
+    transform: translate(-50%, -200%);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 10;
+}
 @keyframes fadeTheBox {
     0%{ 
         opacity: 0.9;
@@ -205,6 +230,9 @@ span.back:hover{
         width:10vw;
         height:10vw;
     }
+    .overlay p.txt {
+        font-size:8rem;
+    }
 }
 @media(max-width:820px)and(orientation:landscape){
     .box{
@@ -220,10 +248,25 @@ span.back:hover{
         width:11vw;
         height:11vw;
     }
+    .overlay p.txt {
+        font-size:6rem;
+    }
+    .actionButtons > *,button.back{
+        font-size:2.5rem;
+    }
 }
 @media(max-width:400px){
     :root{
         --containerBorderWidth:1rem;
         --boxBorder:0.2rem;
+    }
+    .overlay p.txt {
+        font-size:5rem;
+    }
+    .gameInfo > *{
+        font-size:2.5rem;
+    }
+    .actionButtons > *,button.back{
+        font-size:1.8rem;
     }
 }
