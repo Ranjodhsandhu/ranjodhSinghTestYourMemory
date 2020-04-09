@@ -420,8 +420,8 @@ span.back:hover {
           transform-style: preserve-3d;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  -webkit-box-shadow: 0 0 5px 2px #aaa;
-          box-shadow: 0 0 5px 2px #aaa;
+  -webkit-box-shadow: 0 0 5px 0px #58374d;
+          box-shadow: 0 0 5px 0px #58374d;
 }
 
 .box.active .innerContainer {
@@ -453,7 +453,7 @@ span.back:hover {
 .boxBack {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  background-color: #cd2224;
+  background-color: #a11b1c;
 }
 
 .boxRandom {
@@ -467,7 +467,7 @@ span.back:hover {
 .boxRandomBack {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  background-color: #2a562d;
+  background-color: #19341b;
 }
 
 .reset {
@@ -646,5 +646,6 @@ span.back:hover {
 @media (max-width: 400px) {
   :root {
     --containerBorderWidth:1rem;
+    --boxBorder:0.2rem;
   }
 }

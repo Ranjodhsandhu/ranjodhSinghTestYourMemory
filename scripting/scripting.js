@@ -113,8 +113,10 @@ const testMemory = {};
             container
             .append(`<div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
-                <button class='boxFront'></button>
-                <button class='boxBack'></button>
+                <label for="f${x}" class="sr-only">Box ${x}</label>
+                <button class='boxFront' id="f${x}" aria-label="Box ${x}"></button>
+                <label for="b${x}" class="sr-only">Box ${x}</label>
+                <button class='boxBack' id="b${x}"aria-label="Box ${x}"></button>
             </div>
             </div>`
             );
