@@ -346,7 +346,7 @@ main {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  max-width: 80%;
+  max-width: 50%;
 }
 
 .gameInfo * {
@@ -383,10 +383,8 @@ main {
   position: relative;
 }
 
-.actionButtons {
+.actionButtons, .shareButtons {
   position: absolute;
-  top: 0.5rem;
-  left: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -397,10 +395,20 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  top: 0.5rem;
+}
+
+.actionButtons {
+  left: 1rem;
+}
+
+.shareButtons {
+  right: 1rem;
 }
 
 button.back,
-.actionButtons > * {
+.actionButtons > *,
+.shareButtons > * {
   background: none;
   border: none;
   color: #f4f4f4;
@@ -411,7 +419,8 @@ button.back,
 }
 
 button.back:hover,
-.actionButtons > *:hover {
+.actionButtons > *:hover,
+.shareButtons > *:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
@@ -685,7 +694,7 @@ button.back:hover,
   .overlay p.txt {
     font-size: 6rem;
   }
-  .actionButtons > *, button.back {
+  button.back, .actionButtons > *, .shareButtons > * {
     font-size: 2.5rem;
   }
 }
@@ -701,7 +710,7 @@ button.back:hover,
   .gameInfo > * {
     font-size: 2.5rem;
   }
-  .actionButtons > *, button.back {
+  button.back, .actionButtons > *, .shareButtons > * {
     font-size: 2rem;
   }
 }

@@ -52,7 +52,7 @@ main{
     justify-content: center;
     align-items: center;
     flex-wrap:wrap;
-    max-width:80%;
+    max-width:50%;
     *{
         margin:0.5rem;
         text-align:center;
@@ -75,17 +75,22 @@ main{
     align-items:center;
     position:relative;
 }
-.actionButtons{
+.actionButtons,.shareButtons{
     position:absolute;
-    top:0.5rem;
-    left:1rem;
     display:flex;
     flex-direction:column;
     align-items:center;
+    top:0.5rem;
 }
-
+.actionButtons{
+    left:1rem;
+}
+.shareButtons{
+    right:1rem;
+}
 button.back,
-.actionButtons > * {
+.actionButtons > *,
+.shareButtons > * {
     background:none;
     border:none;
     color:$primaryTextColor;
@@ -242,6 +247,7 @@ button.back,
         height:6vw;
     }
 }
+
 @media(max-width:580px){
     :root{
         --containerBorderWidth:1.5rem;
@@ -253,7 +259,7 @@ button.back,
     .overlay p.txt {
         font-size:6rem;
     }
-    .actionButtons > *,button.back{
+    button.back,.actionButtons > *,.shareButtons > *{
         font-size:2.5rem;
     }
 }
@@ -268,7 +274,7 @@ button.back,
     .gameInfo > *{
         font-size:2.5rem;
     }
-    .actionButtons > *,button.back{
+    button.back,.actionButtons > *,.shareButtons > *{
         font-size:2rem;
     }
 }
