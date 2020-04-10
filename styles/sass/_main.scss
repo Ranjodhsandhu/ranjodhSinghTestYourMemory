@@ -25,6 +25,7 @@ main{
         background-color:lighten($backgroundColor,10);
         margin:1rem 0 1rem 0;
         font-size:4rem;
+        font-family:$secondaryFont;
         border:none;
         text-align:left;
         transition:all 0.3s linear;
@@ -185,6 +186,7 @@ button.back,
 }
 .tooltip {
     font-size:1.5rem;
+    font-family: $secondaryFont;
     color: $secondaryColor;
     background-color: $primaryTextColor;
     display: none;
