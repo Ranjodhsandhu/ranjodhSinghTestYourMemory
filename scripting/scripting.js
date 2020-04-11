@@ -33,6 +33,7 @@ memoryApp.head = async function () {
     const { value: userInput } = await Swal.fire({
         title: 'Select level!!!',
         input: 'radio',
+        inputValue: 'false',
         inputOptions: memoryApp.inputOptions,
         allowOutsideClick: false
     });
