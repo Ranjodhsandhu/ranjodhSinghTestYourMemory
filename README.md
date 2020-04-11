@@ -12,7 +12,7 @@ Test Your Memory - It is a form of recognizing an object displayed in a particul
 * Two levels to play the game (Easy and Hard).
 * Simplicity wrapped in complex css-grid.
 * Animation on click and hover events.
-* Accessibility feature is a plus, boxes could be accessed through keyboard tabbing.
+* Accessibility, boxes could be accessed through keyboard tabbing.
 * Use of [sweetAlert2.js](https://sweetalert2.github.io/) library for displaying intersting alerts.
 
 View the app [here](https://www.randomserve.com) 
