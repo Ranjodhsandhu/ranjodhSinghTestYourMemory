@@ -9,7 +9,7 @@ Test Your Memory - It is a form of recognizing an object displayed in a particul
 * Uses css-grid dynamically
 * DOM manipulation with addition and deletion of boxes in the grid
 * Intersting sound effects for win and loose.
-* Two level to play the game, Easy and Hard.
+* Two levels to play the game (Easy and Hard).
 * Simplicity wrapped in complex css-grid.
 * Use of [sweetAlert2.js](https://sweetalert2.github.io/) library for displaying intersting alerts.
 
