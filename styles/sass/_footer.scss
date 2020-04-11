@@ -1,0 +1,12 @@
+footer{
+    font-family:$secondaryFont;
+    font-size:1.5rem;
+    text-align:center;
+    p{
+        color:$secondaryColor;
+    }
+    a{
+        text-decoration:none;
+        color:$frontColor;
+    }
+}

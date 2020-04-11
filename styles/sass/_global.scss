@@ -5,9 +5,10 @@ body{
     background-color:$backgroundColor;
     font-family: $primaryFont;
 }
-.wrapper{
-    max-width:80%;
-    margin:0 auto;
+.wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto; 
 }
 p{
     color:$primaryTextColor;
