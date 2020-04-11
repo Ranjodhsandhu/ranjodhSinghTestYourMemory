@@ -9,12 +9,15 @@
         <!-- include font family -->
         <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+        <!-- style sheet for the app -->
         <link rel="stylesheet" href="styles/styles.css">
         <title>Test You Memory</title>
     </head>
     <body>
+
         <main class="wrapper">
-            <div class="home">
+            <!-- this section has the primary navigation buttons -->
+            <section class="home">
                 <h1>Test You Memory</h1>
                 <button class="start"><i class="far fa-play-circle" tabIndex="1"></i> Play</button>
                 <button class="how"><i class="far fa-question-circle" tabIndex="2"></i> How to play</button>
@@ -22,8 +25,9 @@
                 <audio src="../assets/correct.wav" id="correctSound" preload="auto"></audio>
                 <audio src="../assets/wrong.wav" id="wrongSound" preload="auto"></audio>
                 <audio src="../assets/button.wav" id="buttonClickSound" preload="auto"></audio>
-            </div>
-            <div class="instructions">
+            </section>
+            <!-- instructions on how to play the game -->
+            <section class="instructions">
                 <button class="back" aria-label="Main Menu" tabindex="4">
                     <i class="fas fa-hand-point-left"></i>
                 </button>
@@ -34,8 +38,9 @@
                     <p>3. If you clicked all the correct boxes you will progress by 1 stage</p>
                     <p>4. If you clicked any wrong boxes you will go down 1 stage</p>
                 </div>
-            </div>
-            <div class="gameBoard">
+            </section>
+            <!-- game board contains the actual game grid, game info, action buttons, social buttons -->
+            <section class="gameBoard">
                 <div class="overlay">
                     <p class="txt">0</p>
                 </div>
@@ -54,6 +59,7 @@
                     <h2 class="stage">Stage:<span>0</span></h2>
                     <h2 class="selectionsLeft">Remaining:<span>0</span></h2>
                 </div>
+                <!-- social shareable links -->
                 <div class="shareButtons">
                     <a class="twitter-share-button guideTip"
                         href="https://twitter.com/intent/tweet?text=Test%20Your%20Memory%20at%20https://www.randomserve.com%20%23memorytest" aria-label="Tweet"
@@ -62,27 +68,34 @@
                     </a>
                     <a class="facebook-share-button guideTip"
                         href="https://www.facebook.com/Random-Serve-102113678134912" aria-label="Facebook"
-                        data-tooltip="Facebook Share" tabIndex="9" target="_blank">
+                        data-tooltip="Facebook Page" tabIndex="9" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a class="instagram-share-button guideTip"
                         href="https://www.instagram.com/" aria-label="Instagram"
-                        data-tooltip="Instagram Share" tabIndex="10" target="_blank">
+                        data-tooltip="Instagram" tabIndex="10" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
+                <!-- to appear when user makes a mistake and still more boxes to guess -->
                 <p class="kg">Keep guessing...</p>
+                <!-- this container is to hold the grid boxes for game -->
                 <div class="boxContainer">
                 </div>
-            </div>
+            </section>
         </main>
+        <!-- footer goes here -->
         <footer class="wrapper">
             <p>&copy; 2020 <a href="https://www.ranjodhsandhu.com" target="_blank">Ranjodh Singh</a>. Find code <a href="https://github.com/Ranjodhsandhu/ranjodhSinghTestYourMemory" target="_blank">here.</a>
             </p>
         </footer>
+
+        <!-- all the script goes here -->
+        <!-- include jQuery library -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <!-- include sweetAlert2 library -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.8/dist/sweetalert2.all.min.js"></script>
+        <!-- include local script here -->
         <script src="scripting/scripting.js"></script>
-        <script src="scripting/instructions.js"></script>
     </body>
 </html>

@@ -8,7 +8,7 @@ Test Your Memory - It is a form of recalling an object displayed in a particular
 * Responsive design
 * Uses css-grid dynamically
 * DOM manipulation with addition and deletion of boxes in the grid
-* Intersting sound effects for win and loose.
+* Interesting sound effects for win and loose.
 * Two levels to play the game (Easy and Hard).
 * Simplicity wrapped in complex css-grid.
 * Animation on click and hover events.
