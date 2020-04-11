@@ -1,7 +1,7 @@
 # Test Your Memory - jQuery Web App
 ### Description
 
-Test Your Memory - It is a form of recognizing an object displayed in a particular environment. This app let the user interact with the environment (grid boxes here), recall the positions. Here I used css-grids to display the boxes. This project required to have user interface, DOM manipulation and jQuery. 
+Test Your Memory - It is a form of recalling an object displayed in a particular environment. This app let the user interact with the environment (grid boxes here), recall the positions. Here I used css-grids to display the boxes. This project required to have user interface, DOM manipulation and jQuery. 
 
 ### Project features
 
