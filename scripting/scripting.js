@@ -104,7 +104,7 @@ memoryApp.addElements = ()=>{
         <div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
                 <label for="f${x}" class="sr-only">Box ${x}</label>
-                <button class='boxFront' id="f${x}" aria-label="Box ${x}" tabindex="${8+x}"></button>
+                <button class='boxFront' id="f${x}" aria-label="Box ${x}" tabindex="${10+x}"></button>
                 <label for="b${x}" class="sr-only">Box ${x}</label>
                 <button class='boxBack' id="b${x}"aria-label="Box ${x}"></button>
             </div>
@@ -276,7 +276,7 @@ memoryApp.resetButtonDelay = ()=>{
     }, 2000);
 }
 
-memoryApp.checkMedia = function(){
+memoryApp.displayTooltip = function(){
     // add tool tip to the action button on hovering
     if (window.matchMedia("(max-width: 767px)").matches)
     {}
@@ -320,7 +320,7 @@ memoryApp.init = function(){
         $('.gameBoard').css('display','none');
         $('.instructions').css('display', 'none');
     });
-    memoryApp.checkMedia();
+    memoryApp.displayTooltip();
 }
 
 
