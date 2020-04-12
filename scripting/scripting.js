@@ -4,7 +4,7 @@ const memoryApp = {};
 memoryApp.maxStage = 7;
 memoryApp.minStage = 2;
 // starting stage
-memoryApp.stage = 7;
+memoryApp.stage = 3;
 memoryApp.stageDisplay = memoryApp.stage - 1;
 // how many boxes to select
 memoryApp.boxToSelect = 0;
