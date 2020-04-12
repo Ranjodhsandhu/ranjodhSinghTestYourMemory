@@ -4,7 +4,7 @@ const memoryApp = {};
 memoryApp.maxStage = 7;
 memoryApp.minStage = 2;
 // starting stage
-memoryApp.stage = 3;
+memoryApp.stage = 7;
 memoryApp.stageDisplay = memoryApp.stage - 1;
 // how many boxes to select
 memoryApp.boxToSelect = 0;
@@ -295,12 +295,13 @@ memoryApp.displayTooltip = function(){
 memoryApp.getRandomFact = function() {
     memoryApp.alertUser('success','');
     $.ajax({
-        url:'https://official-joke-api.appspot.com/jokes/programming/random',
+        // to get general type jokes
+        url:'https://official-joke-api.appspot.com/jokes/random',
         method: 'GET',
         format: 'json'
     }).then(function (result) {
-        const question = result[0].setup;
-        const answer = result[0].punchline;
+        const question = result.setup;
+        const answer = result.punchline;
         memoryApp.showRandomFact(`${question}\n.\n.\n.\n${answer}`);
     });
 }
