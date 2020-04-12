@@ -65,7 +65,6 @@ memoryApp.toggleMute = function () {
 // look for how many boxes will be there for user to guess
 memoryApp.boxes = () => {
     memoryApp.boxToSelect = memoryApp.stage;
-    console.log('Boxes selected'+memoryApp.boxToSelect);
     if(memoryApp.hard){
         if (memoryApp.stage === 3) { memoryApp.boxToSelect = memoryApp.stage; }
         if (memoryApp.stage === 4) { memoryApp.boxToSelect = memoryApp.stage + 1; }
@@ -77,13 +76,11 @@ memoryApp.boxes = () => {
 
 // set the grid structure dynamically as per the number of boxes
 memoryApp.setGridColumns = function (){
-    console.log('setting grid columns'+memoryApp.stage);
     document.documentElement.style.setProperty(`--gridColumns`, `${memoryApp.stage}`);
 };
     
 // start the game for any given stage
 memoryApp.start = function () {
-    console.log('Started the game');
     memoryApp.reset();
     memoryApp.boxes();
     memoryApp.setGridColumns();
@@ -100,7 +97,6 @@ memoryApp.start = function () {
 // add boxes to the container
 memoryApp.addElements = ()=>{
     for (let x = 1; x <= memoryApp.totalBoxes; x++) {
-        console.log('adding elements'+x);
         memoryApp.container.append(`
         <div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
@@ -119,7 +115,6 @@ memoryApp.makeRandomSelections = function(){
     while (memoryApp.randomBoxSelection.length != memoryApp.boxToSelect) {
         let r = Math.floor(Math.random() * (memoryApp.totalBoxes)) + 1;
         if (memoryApp.randomBoxSelection.indexOf(r) === -1) memoryApp.randomBoxSelection.push(r);
-        console.log('making random selection'+memoryApp.randomBoxSelection.length+"::"+memoryApp.boxToSelect);
     }
 }
     
@@ -139,7 +134,6 @@ memoryApp.showRandomSelections = function(){
     
 // reset the stage for next or previous stage to appear
 memoryApp.reset = function () {
-    console.log('resetting the game board');
     $('.boxContainer').empty();
     memoryApp.randomBoxSelection = [];
     memoryApp.userSelectionArray = [];
@@ -159,12 +153,9 @@ memoryApp.boxClicked = function (e) {
     }
     memoryApp.checkResult(selection);
 };
-    
-memoryApp.playSound = function(sound){
+memoryApp.playSound = function(sound){  
     sound.currentTime = 0;
-    sound.play().then(()=>{
-        sound.currentTime = 0;
-    });
+    sound.play();
 }
 
 // check the results
@@ -219,11 +210,11 @@ memoryApp.stageProgress = function(){
     if (memoryApp.stage < memoryApp.maxStage){
         memoryApp.stage++;
         memoryApp.displayOverlay(memoryApp.stage);
+        setTimeout(memoryApp.start, (memoryApp.alertTimer+1000));
     }
     else{
-        memoryApp.alertUser('success','');
+        memoryApp.getRandomFact();
     }
-    setTimeout(memoryApp.start, (memoryApp.alertTimer+1000));
 }
 // if user loses, user will go one stage down
 memoryApp.stageDiminish = function(){
@@ -256,10 +247,8 @@ memoryApp.alertUser = function(result,resultQuote){
         allowOutsideClick:false
     });
 }
-
 // update the game info counter
 memoryApp.updateCounter = function(boxes,stageDisplay){
-    console.log('updating the counter');
     $('.selectionsLeft span').text(boxes);
     $('.stage span').text(stageDisplay);
 }
@@ -300,6 +289,34 @@ memoryApp.displayTooltip = function(){
         });
     }
 }
+
+// for fun-reward at the last stage user get to read a joke or fun fact
+// use the ajax call to get the joke from api
+memoryApp.getRandomFact = function() {
+    memoryApp.alertUser('success','');
+    $.ajax({
+        url:'https://official-joke-api.appspot.com/jokes/programming/random',
+        method: 'GET',
+        format: 'json'
+    }).then(function (result) {
+        const question = result[0].setup;
+        const answer = result[0].punchline;
+        memoryApp.showRandomFact(`${question}\n.\n.\n.\n${answer}`);
+    });
+}
+
+// show the joke to user and wait for confirmation to finish reading
+memoryApp.showRandomFact = async function(fact){
+    const gotFact = await Swal.fire({
+        title: fact,
+        showConfirmButton: true,
+        allowOutsideClick: false
+    });
+    if(gotFact){
+        setTimeout(memoryApp.start, 0);
+    }
+}
+
 // define events here
 memoryApp.init = function(){
     $('#reset').on('click', memoryApp.resetButtonClick);
