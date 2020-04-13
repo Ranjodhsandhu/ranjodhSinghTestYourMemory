@@ -14,6 +14,7 @@ Test Your Memory - It is a form of recalling an object displayed in a particular
 * Animation on click and hover events.
 * Accessibility, boxes could be accessed through keyboard tabbing.
 * Use of [sweetAlert2.js](https://sweetalert2.github.io/) library for displaying intersting alerts.
-* Got hands on [joke generator](https://github.com/15Dkatz/official_joke_api) api to show the random programming related jokes/fun-facts to user.
+* Used [joke generator](https://github.com/15Dkatz/official_joke_api) api to show the random jokes/fun-facts to user.
+* Thanks to [freesound.org](https://www.freesound.org) for free audio files.
 
 View the app [here](https://www.randomserve.com) 
