@@ -298,7 +298,7 @@ memoryApp.getRandomFact = function() {
         // to get general type jokes
         url:'https://official-joke-api.appspot.com/jokes/random',
         method: 'GET',
-        format: 'json'
+        format: 'jsonp'
     }).then(function (result) {
         const question = result.setup;
         const answer = result.punchline;
