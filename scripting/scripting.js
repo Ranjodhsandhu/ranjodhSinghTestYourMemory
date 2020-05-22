@@ -4,7 +4,7 @@ const memoryApp = {};
 memoryApp.maxStage = 7;
 memoryApp.minStage = 2;
 // starting stage
-memoryApp.stage = 3;
+memoryApp.stage = 7;
 memoryApp.stageDisplay = memoryApp.stage - 1;
 // how many boxes to select
 memoryApp.boxToSelect = 0;
@@ -101,9 +101,12 @@ memoryApp.addElements = ()=>{
         <div class='box' id='box${x}' data-num='${x}'>
             <div class='innerContainer'>
                 <label for="f${x}" class="sr-only">Box ${x}</label>
-                <button class='boxFront' id="f${x}" aria-label="Box ${x}" tabindex="${10+x}"></button>
+                <button tabindex="${10 + x}">
+                <span class="boxContent boxFront" tabindex="-1" id="f${x}" aria-label="Box ${x}">
+                </span>
+                </button>
                 <label for="b${x}" class="sr-only">Box ${x}</label>
-                <button class='boxBack' id="b${x}"aria-label="Box ${x}"></button>
+                <div class='boxBack' id="b${x}"aria-label="Box ${x}"></div>
             </div>
         </div>`
         );
