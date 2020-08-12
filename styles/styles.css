@@ -359,7 +359,7 @@ main {
   transition: all 0.3s linear;
 }
 
-.gameInfo *:hover {
+.gameInfo *:hover, .gameInfo *:focus {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -419,9 +419,11 @@ button.back,
   transition: all 0.3s linear;
 }
 
-button.back:hover,
+button.back:hover, button.back:focus,
 .actionButtons > *:hover,
-.shareButtons > *:hover {
+.actionButtons > *:focus,
+.shareButtons > *:hover,
+.shareButtons > *:focus {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
@@ -473,6 +475,15 @@ button.back:hover,
 .box:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+.box:focus,
+.boxContent:focus {
+  outline: none;
+}
+
+.box:focus > .boxContent {
+  background: red;
 }
 
 .boxFront,

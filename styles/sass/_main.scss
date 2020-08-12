@@ -60,7 +60,7 @@ main{
         color:$primaryTextColor;
         transition:all 0.3s linear;
     }
-    *:hover{
+    *:hover,*:focus{
         transform:scale(1.1);
     }
 }
@@ -97,7 +97,7 @@ button.back,
     padding:0.5rem;
     font-size:3rem;
     transition:all 0.3s linear;
-    &:hover{
+    &:hover,&:focus{
         transform:scale(1.2);
     }
 }
@@ -134,9 +134,18 @@ button.back,
 .box.active .innerContainer {
     transform: rotateY(180deg);
 }
+
 .box:hover{
     transform:scale(1.1);
 }
+.box:focus,
+.boxContent:focus {
+    outline: none;
+}
+.box:focus > .boxContent {
+    // transform:scale(1.1);
+    background:red;
+} 
 .boxFront,
 .boxBack{
     position: absolute;
