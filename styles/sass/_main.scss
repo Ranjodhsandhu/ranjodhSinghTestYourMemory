@@ -138,14 +138,22 @@ button.back,
 .box:hover{
     transform:scale(1.1);
 }
-.box:focus,
-.boxContent:focus {
-    outline: none;
+.box:focus > .classFront:focus{
+    outline:none;
 }
-.box:focus > .boxContent {
-    // transform:scale(1.1);
-    background:red;
-} 
+.box:focus > .classFront{
+    transform:scale(1.1);
+}
+// .boxButton:focus,
+// .boxContent:focus {
+//     outline: none;
+// }
+// .boxButton:focus > .boxContent {
+//     transform:scale(1.1);
+// }
+// .boxButton:active > .boxContent{
+//     transform: rotateY(180deg);
+// }
 .boxFront,
 .boxBack{
     position: absolute;
