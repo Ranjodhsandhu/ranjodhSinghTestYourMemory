@@ -727,6 +727,31 @@ button.back:hover, button.back:focus,
   }
 }
 
+.adBox {
+  margin-top: 50px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.leaderBoardAd,
+.squareBoxAd {
+  display: block;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+@media (max-width: 768px) {
+  .leaderBoardAd {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .squareBoxAd {
+    display: none;
+  }
+}
+
 footer {
   font-family: "Snippet", sans-serif;
   font-size: 1.5rem;
