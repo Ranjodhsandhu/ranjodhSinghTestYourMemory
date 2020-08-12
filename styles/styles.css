@@ -477,13 +477,13 @@ button.back:hover, button.back:focus,
           transform: scale(1.1);
 }
 
-.box:focus,
-.boxContent:focus {
+.box:focus > .classFront:focus {
   outline: none;
 }
 
-.box:focus > .boxContent {
-  background: red;
+.box:focus > .classFront {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .boxFront,
